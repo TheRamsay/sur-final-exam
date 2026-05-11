@@ -16,7 +16,7 @@
 |---|---|
 | Verifikační status | `legacy doc` |
 | Primární zdroj | lokální pinové PDF `ikr_otazky.pdf` |
-| Extrahovaný text | lokální extrakt z PDF |
+| Doplňkový zdroj | lokální legacy zip obsahuje stejné zadání a studentské řešení v PDF/DOCX |
 
 ## Obsah
 
@@ -40,3 +40,9 @@ Hlavní bloky:
 
 - Není to oficiální SUR termín, ale v konverzaci 2020-2025 slouží jako referenční otázková banka.
 - Zvlášť důležité jsou otázky 10-11, 14-18, 20-32, 39-48.
+- Studentské řešení v legacy zipu nepřidává nové otázky, ale potvrzuje několik častých výkladových pastí:
+  - kernel function u SVM není jen "mapování do vyšší dimenze", ale efektivní výpočet skalárního součinu v rozšířeném prostoru;
+  - backpropagation je způsob výpočtu gradientu pro gradient descent, ne samostatná optimalizační metoda;
+  - u HMM je skrytá stavová sekvence, ne parametry modelu;
+  - `p(X)` u HMM se získá sumací `p(X,S)` přes všechny možné skryté sekvence stavů;
+  - generativní a diskriminativní klasifikátor mohou mít stejnou tvarovou formu posterioru, ale liší se odhadovanými veličinami a předpoklady.

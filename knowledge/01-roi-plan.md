@@ -20,3 +20,14 @@
 
 Největší návratnost mají opakované formulace: MLE kategorického rozdělení, HMM sekvence, lineární gaussovský klasifikátor, LDA/PCA a SVM/kernel. Roky 2024 a 2025 jsou nejpodobnější aktuálnímu stylu zadání.
 
+## Doplněk po legacy zipu
+
+Nový legacy přípravový dokument přidává hlavně podpůrné otázky. Do první/druhé vlny bych je nezařadil před Bayes/GMM/HMM, ale před zkouškou stojí za krátký průchod:
+
+1. Regularizace a generalizace u logistické regrese.
+2. KNN: hard/soft decision, role `k`, výhody a nevýhody.
+3. Diagonální kovariance: nezávislost příznaků a tvar vrstevnic.
+4. MFCC pipeline.
+5. Normalizace dat a cross-validace u neuronových sítí.
+
+Legacy obrazové okruhy jako LBP, integrální obraz, Hough, Viola-Jones, ko-okurenční matice a AdaBoost jsou nízká priorita, pokud se držíme současného SUR stylu.

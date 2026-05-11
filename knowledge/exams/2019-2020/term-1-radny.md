@@ -19,7 +19,7 @@
 
 ## Jednotné zadání
 
-1. Pravděpodobnostní úloha s nemocí/testem: zadáno `P(A)=0,15`, `P(B)=0,95` jako miss/nezelený virus a `P(C)=0,05` jako false error. Ptá se na pozitivní výsledek u náhodné osoby. Na fotografii je výpočet `0,15 * 0,95 + 0,85 * 0,05 = 0,185`.
+1. Pravděpodobnostní úloha s nemocí/testem: zadáno `P(A)=0,15` jako nakažený virem, `P(pozitivní|nakažený)=0,95` a `P(pozitivní|zdravý)=0,05` jako false error. Ptá se na pozitivní výsledek u náhodné osoby. Na fotografii je výpočet `0,15 * 0,95 + 0,85 * 0,05 = 0,185`.
 2. 2D trénovací data: rozhodovací hranice, overfitting, generalizace.
 3. Detection: dva typy chyb, threshold, DET křivka, co znamená a jak ji vyčíst.
 4. Parametr `k` v K-nearest neighbours a jak jej zvolit.
@@ -40,3 +40,4 @@
 
 - Otázka 1 je z fotografie hůře čitelná; v konverzaci se řešila i varianta výsledku `0,185`.
 - Text je kombinace autorovy zprávy a ručního přepisu fotografie.
+- Lokální legacy zip obsahuje stejnou fotografii a potvrzuje interpretaci `0,95` jako pravděpodobnost pozitivního testu u nakaženého, tedy miss rate `0,05`.
