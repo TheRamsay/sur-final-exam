@@ -5,12 +5,13 @@ Archiv je postavený hlavně z Discord pinů a zpráv z období 15. 4. až 1. 7.
 ## Nejrychlejší start
 
 1. [[knowledge/exams/00-index|Minulá zadání]]
-2. [[knowledge/02-cetnosti-temat|Četnosti témat]]
-3. [[knowledge/01-roi-plan|ROI plán]]
-4. [[knowledge/topics/00-index|Topic index]]
-5. [[knowledge/exams/legacy/pre-2016-fit-guide|Legacy FIT/IKR guide]]
-6. [[raw/manual/pin-assignments|Raw zadání z pinů]]
-7. [[raw/manual/conversation-assignments|Raw zadání z konverzace]]
+2. [[knowledge/03-opakovani-otazek|Opakování otázek po letech]]
+3. [[knowledge/02-cetnosti-temat|Četnosti témat]]
+4. [[knowledge/01-roi-plan|ROI plán]]
+5. [[knowledge/topics/00-index|Topic index]]
+6. [[knowledge/exams/legacy/pre-2016-fit-guide|Legacy FIT/IKR guide]]
+7. [[raw/manual/pin-assignments|Raw zadání z pinů]]
+8. [[raw/manual/conversation-assignments|Raw zadání z konverzace]]
 
 ## Top témata
 
