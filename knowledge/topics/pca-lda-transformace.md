@@ -7,9 +7,12 @@
 - PCA vs LDA: PCA maximalizuje varianci, LDA hledá diskriminační směr mezi třídami.
 - Whitening/normalizace na `N(0, I)` a role ortonormální báze.
 
+## Interaktivně
+
+<div class="sur-viz" data-sur-viz="pca-lda"></div>
+
 ## Typické zadání
 
 - Z matic `Wc` a `Wac` odvoďte směr LDA.
 - Pro zadanou transformaci určete novou střední hodnotu, kovarianční matici a vlastní čísla.
 - Nakreslete rozložení podle kovarianční matice a vysvětlete vliv vlastních čísel.
-

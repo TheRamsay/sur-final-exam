@@ -1,4 +1,6 @@
 type Point = { x: number; y: number; c?: number; r?: number }
+type LabeledPoint = Point & { label: number }
+type Rect = { x: number; y: number; w: number; h: number }
 
 const colors = {
   blue: "#2f5f6f",
@@ -10,6 +12,7 @@ const colors = {
   grid: "#d8d1c7",
   paper: "#fbfaf7",
   good: "#3f7a5f",
+  bad: "#b94a48",
 }
 
 function html<K extends keyof HTMLElementTagNameMap>(
@@ -105,6 +108,75 @@ function button(parent: HTMLElement, label: string, onClick: () => void) {
   return btn
 }
 
+type KatexWindow = Window &
+  typeof globalThis & {
+    katex?: {
+      render: (
+        tex: string,
+        element: HTMLElement,
+        options?: { displayMode?: boolean; throwOnError?: boolean },
+      ) => void
+    }
+  }
+
+let katexReady: Promise<void> | undefined
+
+function getKatex() {
+  return (window as KatexWindow).katex
+}
+
+function renderLatexInto(element: HTMLElement, tex: string, displayMode = false) {
+  const katex = getKatex()
+  if (!katex) {
+    element.textContent = displayMode ? `$$${tex}$$` : `\\(${tex}\\)`
+    return
+  }
+
+  try {
+    katex.render(tex, element, { displayMode, throwOnError: false })
+  } catch {
+    element.textContent = displayMode ? `$$${tex}$$` : `\\(${tex}\\)`
+  }
+}
+
+function renderPendingLatex(root: HTMLElement = document.body) {
+  root.querySelectorAll<HTMLElement>("[data-sur-tex]").forEach((element) => {
+    renderLatexInto(element, element.dataset.surTex ?? "", element.dataset.surDisplay === "true")
+  })
+}
+
+function ensureKatex(root: HTMLElement = document.body) {
+  if (getKatex()) {
+    renderPendingLatex(root)
+    return
+  }
+
+  if (!katexReady) {
+    katexReady = new Promise((resolve) => {
+      const script = document.createElement("script")
+      script.src = "https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"
+      script.onload = () => resolve()
+      script.onerror = () => resolve()
+      document.head.append(script)
+    })
+  }
+
+  katexReady.then(() => renderPendingLatex(root))
+}
+
+function formulaReadout(info: HTMLElement, tex: string, bodyHtml: string, displayMode = false) {
+  const formula = html("span", "sur-viz-formula")
+  formula.dataset.surTex = tex
+  formula.dataset.surDisplay = String(displayMode)
+  renderLatexInto(formula, tex, displayMode)
+
+  const body = html("span")
+  body.innerHTML = bodyHtml
+
+  info.replaceChildren(formula, document.createElement("br"), body)
+  ensureKatex(info)
+}
+
 function sizeCanvas(canvas: HTMLCanvasElement, wrap: HTMLElement) {
   const dpr = window.devicePixelRatio || 1
   const width = Math.max(1, Math.floor(wrap.clientWidth || 320))
@@ -152,6 +224,10 @@ function mixColor(a: string, b: string, t: number) {
   return `rgb(${r}, ${g}, ${bl})`
 }
 
+function clamp(value: number, min: number, max: number) {
+  return Math.max(min, Math.min(max, value))
+}
+
 function seeded(seed: number) {
   let state = seed >>> 0
   return () => {
@@ -190,6 +266,130 @@ function drawPoint(
   ctx.fillStyle = fill
   ctx.fill()
   ctx.strokeStyle = "rgba(37, 34, 31, 0.3)"
+  ctx.stroke()
+}
+
+function panelWorld(rect: Rect, xMin: number, xMax: number, yMin: number, yMax: number) {
+  return {
+    rect,
+    xMin,
+    xMax,
+    yMin,
+    yMax,
+    toX: (x: number) => rect.x + ((x - xMin) / (xMax - xMin)) * rect.w,
+    toY: (y: number) => rect.y + rect.h - ((y - yMin) / (yMax - yMin)) * rect.h,
+    fromX: (px: number) => xMin + ((px - rect.x) / rect.w) * (xMax - xMin),
+    fromY: (py: number) => yMin + ((rect.y + rect.h - py) / rect.h) * (yMax - yMin),
+  }
+}
+
+function drawPanelFrame(ctx: CanvasRenderingContext2D, rect: Rect, title: string) {
+  ctx.strokeStyle = colors.grid
+  ctx.lineWidth = 1
+  ctx.strokeRect(rect.x, rect.y, rect.w, rect.h)
+  ctx.fillStyle = colors.muted
+  ctx.font = "12px sans-serif"
+  ctx.fillText(title, rect.x + 10, rect.y + 18)
+}
+
+function drawPanelAxes(ctx: CanvasRenderingContext2D, map: ReturnType<typeof panelWorld>) {
+  ctx.strokeStyle = colors.grid
+  ctx.lineWidth = 1
+  ctx.beginPath()
+  if (map.yMin <= 0 && map.yMax >= 0) {
+    ctx.moveTo(map.rect.x, map.toY(0))
+    ctx.lineTo(map.rect.x + map.rect.w, map.toY(0))
+  }
+  if (map.xMin <= 0 && map.xMax >= 0) {
+    ctx.moveTo(map.toX(0), map.rect.y)
+    ctx.lineTo(map.toX(0), map.rect.y + map.rect.h)
+  }
+  ctx.stroke()
+}
+
+function normalizeVec(v: Point) {
+  const length = Math.hypot(v.x, v.y) || 1
+  return { x: v.x / length, y: v.y / length }
+}
+
+function drawWorldLine(
+  ctx: CanvasRenderingContext2D,
+  map: ReturnType<typeof panelWorld> | ReturnType<typeof world>,
+  point: Point,
+  direction: Point,
+  stroke: string,
+  width = 2,
+  dash: number[] = [],
+) {
+  const dir = normalizeVec(direction)
+  const span = 10
+  ctx.strokeStyle = stroke
+  ctx.lineWidth = width
+  ctx.setLineDash(dash)
+  ctx.beginPath()
+  ctx.moveTo(map.toX(point.x - dir.x * span), map.toY(point.y - dir.y * span))
+  ctx.lineTo(map.toX(point.x + dir.x * span), map.toY(point.y + dir.y * span))
+  ctx.stroke()
+  ctx.setLineDash([])
+}
+
+function covariance(points: Point[]) {
+  const mean = points.reduce((sum, p) => ({ x: sum.x + p.x, y: sum.y + p.y }), { x: 0, y: 0 })
+  mean.x /= points.length
+  mean.y /= points.length
+
+  const cov = points.reduce(
+    (sum, p) => {
+      const dx = p.x - mean.x
+      const dy = p.y - mean.y
+      return {
+        xx: sum.xx + dx * dx,
+        xy: sum.xy + dx * dy,
+        yy: sum.yy + dy * dy,
+      }
+    },
+    { xx: 0, xy: 0, yy: 0 },
+  )
+  const scale = Math.max(1, points.length - 1)
+  return { mean, xx: cov.xx / scale, xy: cov.xy / scale, yy: cov.yy / scale }
+}
+
+function eigen2(cov: { xx: number; xy: number; yy: number }) {
+  const trace = cov.xx + cov.yy
+  const diff = cov.xx - cov.yy
+  const root = Math.sqrt(diff * diff + 4 * cov.xy * cov.xy)
+  const l1 = (trace + root) / 2
+  const l2 = (trace - root) / 2
+  const v1 =
+    Math.abs(cov.xy) > 1e-9
+      ? normalizeVec({ x: cov.xy, y: l1 - cov.xx })
+      : cov.xx >= cov.yy
+        ? { x: 1, y: 0 }
+        : { x: 0, y: 1 }
+  const v2 = { x: -v1.y, y: v1.x }
+  return { l1, l2, v1, v2 }
+}
+
+function drawCovEllipse(
+  ctx: CanvasRenderingContext2D,
+  map: ReturnType<typeof panelWorld> | ReturnType<typeof world>,
+  mean: Point,
+  cov: { xx: number; xy: number; yy: number },
+  stroke: string,
+) {
+  const eig = eigen2(cov)
+  const a = Math.sqrt(Math.max(eig.l1, 1e-6)) * 1.8
+  const b = Math.sqrt(Math.max(eig.l2, 1e-6)) * 1.8
+  ctx.strokeStyle = stroke
+  ctx.lineWidth = 1.5
+  ctx.beginPath()
+  for (let i = 0; i <= 64; i++) {
+    const t = (i / 64) * Math.PI * 2
+    const x = mean.x + eig.v1.x * Math.cos(t) * a + eig.v2.x * Math.sin(t) * b
+    const y = mean.y + eig.v1.y * Math.cos(t) * a + eig.v2.y * Math.sin(t) * b
+    if (i === 0) ctx.moveTo(map.toX(x), map.toY(y))
+    else ctx.lineTo(map.toX(x), map.toY(y))
+  }
   ctx.stroke()
 }
 
@@ -247,11 +447,13 @@ function renderBayes(root: HTMLElement) {
     ctx.fillText("C1", map.toX(mu1.x) + 10, map.toY(mu1.y) - 10)
     ctx.fillText("C2", map.toX(mu2.x) + 10, map.toY(mu2.y) - 10)
 
-    info.innerHTML = `<span class="sur-viz-formula">argmax_c log p(x|C=c) + log P(C=c)</span><br>Pri <strong>P(C1)=${prior.toFixed(
-      2,
-    )}</strong> je MAP hranice na <strong>x=${boundary.toFixed(
-      2,
-    )}</strong>. Vetsi prior dava tride vetsi oblast i beze zmeny likelihoodu.`
+    formulaReadout(
+      info,
+      "\\arg\\max_c \\left[\\log p(x\\mid C=c)+\\log P(C=c)\\right]",
+      `Pri <strong>P(C1)=${prior.toFixed(2)}</strong> je MAP hranice na <strong>x=${boundary.toFixed(
+        2,
+      )}</strong>. Vetsi prior dava tride vetsi oblast i beze zmeny likelihoodu.`,
+    )
   }
 
   range(controlBox, "P(C1)", 0.1, 0.9, 0.01, prior, (value) => {
@@ -306,8 +508,11 @@ function renderGmm(root: HTMLElement) {
       return a / (a + b)
     })
     phase = "M"
-    info.innerHTML =
-      '<span class="sur-viz-formula">r_ik = pi_k N(x_i|mu_k,Sigma_k) / sum_j pi_j N(x_i|mu_j,Sigma_j)</span><br>E krok: barva bodu ukazuje, jak moc patri ke komponente 1 vs 2.'
+    formulaReadout(
+      info,
+      "r_{ik}=\\frac{\\pi_k\\,\\mathcal{N}(x_i\\mid\\mu_k,\\Sigma_k)}{\\sum_j \\pi_j\\,\\mathcal{N}(x_i\\mid\\mu_j,\\Sigma_j)}",
+      "E krok: barva bodu ukazuje, jak moc patri ke komponente 1 vs 2.",
+    )
     draw()
   }
 
@@ -329,9 +534,13 @@ function renderGmm(root: HTMLElement) {
     weights = [n1 / data.length, n2 / data.length]
     sigma = Math.max(0.42, sigma * 0.95)
     phase = "E"
-    info.innerHTML = `<span class="sur-viz-formula">mu_k = sum_i r_ik x_i / sum_i r_ik</span><br>M krok: aktualizovane vahy jsou <strong>${weights[0].toFixed(
-      2,
-    )}</strong> a <strong>${weights[1].toFixed(2)}</strong>.`
+    formulaReadout(
+      info,
+      "\\mu_k=\\frac{\\sum_i r_{ik}x_i}{\\sum_i r_{ik}}",
+      `M krok: aktualizovane vahy jsou <strong>${weights[0].toFixed(
+        2,
+      )}</strong> a <strong>${weights[1].toFixed(2)}</strong>.`,
+    )
     draw()
   }
 
@@ -551,11 +760,17 @@ function renderHmm(root: HTMLElement) {
     wrap.replaceChildren(svg)
 
     if (stepIndex === 0) {
-      info.innerHTML =
-        '<span class="sur-viz-formula">delta_1(s) = P(s) p(x_1|s)</span><br>Inicializace kombinuje prior stavu a emission pravdepodobnost prvniho pozorovani.'
+      formulaReadout(
+        info,
+        "\\delta_1(s)=P(s)\\,p(x_1\\mid s)",
+        "Inicializace kombinuje prior stavu a emission pravdepodobnost prvniho pozorovani.",
+      )
     } else if (stepIndex < obs.length) {
-      info.innerHTML =
-        '<span class="sur-viz-formula">delta_t(s) = max_q delta_{t-1}(q) a_qs b_s(x_t)</span><br>Kazdy uzel si pamatuje nejlepsiho predchudce.'
+      formulaReadout(
+        info,
+        "\\delta_t(s)=\\max_q\\,\\delta_{t-1}(q)a_{qs}b_s(x_t)",
+        "Kazdy uzel si pamatuje nejlepsiho predchudce.",
+      )
     } else {
       info.innerHTML = `Nejpravdepodobnejsi cesta: <strong>${path
         .map((s) => states[s])
@@ -578,6 +793,437 @@ function renderHmm(root: HTMLElement) {
   draw()
 }
 
+function renderSvm(root: HTMLElement) {
+  const body = shell(
+    root,
+    "SVM / margin a kernel",
+    "Margin ukazuje podporne vektory; kernel pohled ukazuje, proc skalarni soucin ve feature prostoru staci.",
+  )
+  const { wrap, canvas } = canvasPanel(body)
+  const controlBox = controls(body)
+  const actions = html("div", "sur-viz-buttons")
+  body.append(actions)
+  const info = readout(body)
+
+  const marginData: LabeledPoint[] = [
+    { x: -2.3, y: 1.05, label: 1 },
+    { x: -1.7, y: 1.45, label: 1 },
+    { x: -1.2, y: 0.72, label: 1 },
+    { x: -0.45, y: 1.12, label: 1 },
+    { x: 0.28, y: 0.55, label: 1 },
+    { x: 1.0, y: 1.0, label: 1 },
+    { x: 1.8, y: 1.35, label: 1 },
+    { x: -2.2, y: -1.15, label: -1 },
+    { x: -1.3, y: -1.42, label: -1 },
+    { x: -0.45, y: -0.88, label: -1 },
+    { x: 0.42, y: -1.2, label: -1 },
+    { x: 1.08, y: -0.72, label: -1 },
+    { x: 1.85, y: -1.28, label: -1 },
+    { x: 2.35, y: -0.92, label: -1 },
+  ]
+  const kernelData: LabeledPoint[] = [
+    { x: -0.35, y: 0.18, label: 1 },
+    { x: 0.25, y: -0.28, label: 1 },
+    { x: 0.42, y: 0.34, label: 1 },
+    { x: -0.18, y: -0.42, label: 1 },
+    { x: -1.55, y: 0.95, label: -1 },
+    { x: -1.2, y: -1.1, label: -1 },
+    { x: 1.35, y: 1.05, label: -1 },
+    { x: 1.45, y: -0.92, label: -1 },
+    { x: 0.0, y: 1.55, label: -1 },
+    { x: 0.1, y: -1.62, label: -1 },
+  ]
+
+  let cPenalty = 1.0
+  let mode: "margin" | "kernel" = "margin"
+
+  function drawMargin() {
+    const { ctx, width, height } = sizeCanvas(canvas, wrap)
+    const map = world(width, height)
+    const logC = Math.log(cPenalty)
+    const normal = normalizeVec({ x: -0.28 + 0.12 * logC, y: 1 })
+    const bias = -0.08 + 0.05 * logC
+    const margin = 0.92 / (0.8 + Math.sqrt(cPenalty))
+    const direction = { x: -normal.y, y: normal.x }
+    const pointOn = (level: number) => ({
+      x: (level - bias) * normal.x,
+      y: (level - bias) * normal.y,
+    })
+
+    ctx.clearRect(0, 0, width, height)
+    const step = 8
+    for (let py = 0; py < height; py += step) {
+      for (let px = 0; px < width; px += step) {
+        const x = map.fromX(px)
+        const y = map.fromY(py)
+        const score = normal.x * x + normal.y * y + bias
+        ctx.fillStyle = score >= 0 ? colors.blueLight : colors.rustLight
+        ctx.globalAlpha = 0.18
+        ctx.fillRect(px, py, step + 1, step + 1)
+      }
+    }
+    ctx.globalAlpha = 1
+    drawAxes(ctx, width, height)
+
+    drawWorldLine(ctx, map, pointOn(0), direction, colors.ink, 2.5)
+    drawWorldLine(ctx, map, pointOn(margin), direction, colors.ink, 1.5, [8, 6])
+    drawWorldLine(ctx, map, pointOn(-margin), direction, colors.ink, 1.5, [8, 6])
+
+    let support = 0
+    let slack = 0
+    for (const p of marginData) {
+      const signed = p.label * (normal.x * p.x + normal.y * p.y + bias)
+      const violation = Math.max(0, margin - signed)
+      const fill = p.label > 0 ? colors.blue : colors.rust
+      if (Math.abs(signed - margin) < 0.18 || violation > 0) support++
+      if (violation > 0) {
+        slack++
+        const projected = {
+          x: p.x + normal.x * violation * p.label,
+          y: p.y + normal.y * violation * p.label,
+        }
+        ctx.strokeStyle = colors.bad
+        ctx.lineWidth = 1.5
+        ctx.beginPath()
+        ctx.moveTo(map.toX(p.x), map.toY(p.y))
+        ctx.lineTo(map.toX(projected.x), map.toY(projected.y))
+        ctx.stroke()
+      }
+      drawPoint(ctx, map, p, fill, violation > 0 ? 6 : 5)
+      if (Math.abs(signed - margin) < 0.18 || violation > 0) {
+        ctx.strokeStyle = colors.ink
+        ctx.lineWidth = 2
+        ctx.beginPath()
+        ctx.arc(map.toX(p.x), map.toY(p.y), 9, 0, Math.PI * 2)
+        ctx.stroke()
+      }
+    }
+
+    formulaReadout(
+      info,
+      "\\min_{w,b,\\xi}\\frac{1}{2}\\lVert w\\rVert^2+C\\sum_i\\xi_i\\quad\\text{s.t.}\\quad y_i(w^\\top x_i+b)\\ge 1-\\xi_i",
+      `Aktualne <strong>C=${cPenalty.toFixed(
+        2,
+      )}</strong>: oznaceno je <strong>${support}</strong> support/slack bodu, z toho <strong>${slack}</strong> porusuje margin. Vetsi C vic tresta poruseni, mensi C dovoli mekci hranici.`,
+    )
+  }
+
+  function drawKernel() {
+    const { ctx, width, height } = sizeCanvas(canvas, wrap)
+    ctx.clearRect(0, 0, width, height)
+    const gap = 18
+    const vertical = width < 560
+    const left: Rect = vertical
+      ? { x: 34, y: 30, w: width - 68, h: (height - 80) / 2 }
+      : { x: 34, y: 38, w: (width - 86) / 2, h: height - 72 }
+    const right: Rect = vertical
+      ? { x: 34, y: left.y + left.h + gap, w: width - 68, h: (height - 80) / 2 }
+      : { x: left.x + left.w + gap, y: 38, w: (width - 86) / 2, h: height - 72 }
+    const input = panelWorld(left, -2, 2, -2, 2)
+    const feature = panelWorld(right, -2, 2, -0.2, 4.5)
+    const threshold = 1.15
+
+    drawPanelFrame(ctx, left, "vstupni prostor")
+    drawPanelFrame(ctx, right, "feature prostor")
+    drawPanelAxes(ctx, input)
+    drawPanelAxes(ctx, feature)
+
+    ctx.strokeStyle = colors.ink
+    ctx.lineWidth = 2
+    ctx.setLineDash([7, 5])
+    ctx.beginPath()
+    for (let i = 0; i <= 96; i++) {
+      const t = (i / 96) * Math.PI * 2
+      const x = Math.cos(t) * Math.sqrt(threshold)
+      const y = Math.sin(t) * Math.sqrt(threshold)
+      if (i === 0) ctx.moveTo(input.toX(x), input.toY(y))
+      else ctx.lineTo(input.toX(x), input.toY(y))
+    }
+    ctx.stroke()
+    ctx.beginPath()
+    ctx.moveTo(feature.toX(-2), feature.toY(threshold))
+    ctx.lineTo(feature.toX(2), feature.toY(threshold))
+    ctx.stroke()
+    ctx.setLineDash([])
+
+    for (const p of kernelData) {
+      const fill = p.label > 0 ? colors.blue : colors.rust
+      drawPoint(ctx, input, p, fill, 5)
+      drawPoint(ctx, feature, { x: p.x, y: p.x * p.x + p.y * p.y }, fill, 5)
+    }
+
+    ctx.fillStyle = colors.muted
+    ctx.font = "12px sans-serif"
+    ctx.fillText("nelinearni kruh", input.toX(-1.9), input.toY(1.8))
+    ctx.fillText("linearni rez", feature.toX(-1.9), feature.toY(4.25))
+
+    formulaReadout(
+      info,
+      "K(x,z)=(x^\\top z+1)^2=\\phi(x)^\\top\\phi(z)",
+      "Kernel nemusi explicitne kreslit cely vyssi prostor. Staci, ze SVM dostane skalarni soucin po mapovani a muze najit linearni hranici tam.",
+    )
+  }
+
+  function draw() {
+    mode === "margin" ? drawMargin() : drawKernel()
+  }
+
+  range(controlBox, "C", 0.2, 4, 0.05, cPenalty, (value) => {
+    cPenalty = value
+    draw()
+  })
+  button(actions, "Margin", () => {
+    mode = "margin"
+    draw()
+  })
+  button(actions, "Kernel", () => {
+    mode = "kernel"
+    draw()
+  })
+
+  const resize = new ResizeObserver(draw)
+  resize.observe(wrap)
+  window.addCleanup(() => resize.disconnect())
+  draw()
+}
+
+function makePcaLdaData(separation: number) {
+  const rand = seeded(20260512)
+  const angle = 1.08
+  const ca = Math.cos(angle)
+  const sa = Math.sin(angle)
+  const makeClass = (label: number, meanX: number, meanY: number) => {
+    const points: LabeledPoint[] = []
+    for (let i = 0; i < 34; i++) {
+      const along = normal(rand) * 1.05
+      const across = normal(rand) * 0.24
+      points.push({
+        x: meanX + along * ca - across * sa,
+        y: meanY + along * sa + across * ca,
+        label,
+      })
+    }
+    return points
+  }
+  return [
+    ...makeClass(1, -separation * 0.55, 0.2),
+    ...makeClass(-1, separation * 0.55, -0.2),
+  ]
+}
+
+function renderPcaLda(root: HTMLElement) {
+  const body = shell(
+    root,
+    "PCA vs LDA smer",
+    "PCA sleduje celkovou varianci bez trid; LDA hleda smer, ktery oddeli tridy.",
+  )
+  const { wrap, canvas } = canvasPanel(body)
+  const controlBox = controls(body)
+  const info = readout(body)
+  let separation = 1.35
+
+  function draw() {
+    const { ctx, width, height } = sizeCanvas(canvas, wrap)
+    const map = world(width, height)
+    const data = makePcaLdaData(separation)
+    const c1 = data.filter((p) => p.label > 0)
+    const c2 = data.filter((p) => p.label < 0)
+    const totalCov = covariance(data)
+    const cov1 = covariance(c1)
+    const cov2 = covariance(c2)
+    const pca = eigen2(totalCov)
+    const sw = {
+      xx: cov1.xx + cov2.xx,
+      xy: cov1.xy + cov2.xy,
+      yy: cov1.yy + cov2.yy,
+    }
+    const diff = { x: cov1.mean.x - cov2.mean.x, y: cov1.mean.y - cov2.mean.y }
+    const det = Math.max(1e-6, sw.xx * sw.yy - sw.xy * sw.xy)
+    const lda = normalizeVec({
+      x: (sw.yy * diff.x - sw.xy * diff.y) / det,
+      y: (-sw.xy * diff.x + sw.xx * diff.y) / det,
+    })
+
+    ctx.clearRect(0, 0, width, height)
+    drawAxes(ctx, width, height)
+
+    drawCovEllipse(ctx, map, cov1.mean, cov1, colors.blue)
+    drawCovEllipse(ctx, map, cov2.mean, cov2, colors.rust)
+    for (const p of data) {
+      drawPoint(ctx, map, p, p.label > 0 ? colors.blue : colors.rust, 4.2)
+    }
+
+    drawPoint(ctx, map, cov1.mean, colors.blue, 8)
+    drawPoint(ctx, map, cov2.mean, colors.rust, 8)
+    drawWorldLine(ctx, map, totalCov.mean, pca.v1, colors.blue, 3, [8, 5])
+    drawWorldLine(ctx, map, totalCov.mean, lda, colors.good, 3)
+
+    ctx.fillStyle = colors.blue
+    ctx.font = "13px sans-serif"
+    ctx.fillText("PCA", map.toX(totalCov.mean.x + pca.v1.x * 1.8), map.toY(totalCov.mean.y + pca.v1.y * 1.8))
+    ctx.fillStyle = colors.good
+    ctx.fillText("LDA", map.toX(totalCov.mean.x + lda.x * 1.8), map.toY(totalCov.mean.y + lda.y * 1.8))
+
+    const dot = Math.abs(pca.v1.x * lda.x + pca.v1.y * lda.y)
+    const angle = (Math.acos(clamp(dot, -1, 1)) * 180) / Math.PI
+    formulaReadout(
+      info,
+      "w_{LDA}\\propto S_W^{-1}(\\mu_1-\\mu_2),\\qquad u_{PCA}=\\arg\\max_{\\lVert u\\rVert=1}u^\\top S_Tu",
+      `Pri separaci <strong>${separation.toFixed(
+        2,
+      )}</strong> je rozdil smeru asi <strong>${angle.toFixed(
+        0,
+      )} deg</strong>. PCA muze jit po nejvetsi rozptylene ose, i kdyz pro klasifikaci neni nejlepsi.`,
+    )
+  }
+
+  range(controlBox, "Separace trid", 0.4, 2.4, 0.05, separation, (value) => {
+    separation = value
+    draw()
+  })
+
+  const resize = new ResizeObserver(draw)
+  resize.observe(wrap)
+  window.addCleanup(() => resize.disconnect())
+  draw()
+}
+
+function erfApprox(x: number) {
+  const sign = x < 0 ? -1 : 1
+  const a = Math.abs(x)
+  const t = 1 / (1 + 0.3275911 * a)
+  const y =
+    1 -
+    (((((1.061405429 * t - 1.453152027) * t + 1.421413741) * t - 0.284496736) * t +
+      0.254829592) *
+      t *
+      Math.exp(-a * a))
+  return sign * y
+}
+
+function normalPdf1d(x: number, mean: number, sigma: number) {
+  const z = (x - mean) / sigma
+  return Math.exp(-0.5 * z * z) / (sigma * Math.sqrt(2 * Math.PI))
+}
+
+function normalCdf1d(x: number, mean: number, sigma: number) {
+  return 0.5 * (1 + erfApprox((x - mean) / (sigma * Math.SQRT2)))
+}
+
+function renderDet(root: HTMLElement) {
+  const body = shell(
+    root,
+    "DET / threshold",
+    "Posun prahu meni false alarm a miss; jeden bod DET krivky je jedna konkretni hodnota prahu.",
+  )
+  const { wrap, canvas } = canvasPanel(body)
+  const controlBox = controls(body)
+  const info = readout(body)
+  let threshold = 0.15
+  const impostor = { mean: -0.65, sigma: 0.72 }
+  const target = { mean: 0.9, sigma: 0.68 }
+
+  function rates(th: number) {
+    const fa = 1 - normalCdf1d(th, impostor.mean, impostor.sigma)
+    const miss = normalCdf1d(th, target.mean, target.sigma)
+    return { fa, miss }
+  }
+
+  function drawCurve(ctx: CanvasRenderingContext2D, map: ReturnType<typeof panelWorld>) {
+    ctx.strokeStyle = colors.ink
+    ctx.lineWidth = 2
+    ctx.beginPath()
+    for (let i = 0; i <= 90; i++) {
+      const th = -2.8 + (i / 90) * 5.6
+      const r = rates(th)
+      if (i === 0) ctx.moveTo(map.toX(r.fa), map.toY(r.miss))
+      else ctx.lineTo(map.toX(r.fa), map.toY(r.miss))
+    }
+    ctx.stroke()
+  }
+
+  function drawDistribution(ctx: CanvasRenderingContext2D, map: ReturnType<typeof panelWorld>) {
+    const drawPdf = (mean: number, sigma: number, stroke: string) => {
+      ctx.strokeStyle = stroke
+      ctx.lineWidth = 2.5
+      ctx.beginPath()
+      for (let i = 0; i <= 120; i++) {
+        const x = -3 + (i / 120) * 6
+        const y = normalPdf1d(x, mean, sigma)
+        if (i === 0) ctx.moveTo(map.toX(x), map.toY(y))
+        else ctx.lineTo(map.toX(x), map.toY(y))
+      }
+      ctx.stroke()
+    }
+
+    drawPdf(impostor.mean, impostor.sigma, colors.rust)
+    drawPdf(target.mean, target.sigma, colors.blue)
+    ctx.strokeStyle = colors.ink
+    ctx.lineWidth = 2
+    ctx.setLineDash([7, 5])
+    ctx.beginPath()
+    ctx.moveTo(map.toX(threshold), map.toY(0))
+    ctx.lineTo(map.toX(threshold), map.toY(0.65))
+    ctx.stroke()
+    ctx.setLineDash([])
+  }
+
+  function draw() {
+    const { ctx, width, height } = sizeCanvas(canvas, wrap)
+    ctx.clearRect(0, 0, width, height)
+    const gap = 18
+    const vertical = width < 560
+    const left: Rect = vertical
+      ? { x: 34, y: 30, w: width - 68, h: (height - 80) / 2 }
+      : { x: 42, y: 38, w: (width - 96) / 2, h: height - 76 }
+    const right: Rect = vertical
+      ? { x: 34, y: left.y + left.h + gap, w: width - 68, h: (height - 80) / 2 }
+      : { x: left.x + left.w + gap, y: 38, w: (width - 96) / 2, h: height - 76 }
+    const distMap = panelWorld(left, -3, 3, 0, 0.65)
+    const detMap = panelWorld(right, 0, 1, 0, 1)
+    const current = rates(threshold)
+
+    drawPanelFrame(ctx, left, "score distribuce")
+    drawPanelFrame(ctx, right, "DET")
+    drawPanelAxes(ctx, distMap)
+    drawPanelAxes(ctx, detMap)
+    drawDistribution(ctx, distMap)
+    drawCurve(ctx, detMap)
+    drawPoint(ctx, detMap, { x: current.fa, y: current.miss }, colors.good, 7)
+
+    ctx.fillStyle = colors.muted
+    ctx.font = "12px sans-serif"
+    ctx.fillText("impostor", distMap.toX(-1.85), distMap.toY(0.55))
+    ctx.fillText("target", distMap.toX(1.05), distMap.toY(0.55))
+    ctx.fillText("P_FA", detMap.toX(0.78), detMap.toY(-0.08))
+    ctx.save()
+    ctx.translate(detMap.toX(-0.12), detMap.toY(0.78))
+    ctx.rotate(-Math.PI / 2)
+    ctx.fillText("P_Miss", 0, 0)
+    ctx.restore()
+
+    formulaReadout(
+      info,
+      "P_{FA}=\\frac{FP}{FP+TN},\\qquad P_{Miss}=\\frac{FN}{TP+FN}",
+      `Prahovani na <strong>${threshold.toFixed(2)}</strong>: <strong>P_FA=${(
+        current.fa * 100
+      ).toFixed(1)}%</strong>, <strong>P_Miss=${(current.miss * 100).toFixed(
+        1,
+      )}%</strong>. Zvyseni prahu snizuje false alarm, ale zvysuje miss.`,
+    )
+  }
+
+  range(controlBox, "Threshold", -2.2, 2.6, 0.05, threshold, (value) => {
+    threshold = value
+    draw()
+  })
+
+  const resize = new ResizeObserver(draw)
+  resize.observe(wrap)
+  window.addCleanup(() => resize.disconnect())
+  draw()
+}
+
 function mountSurVisuals() {
   document.querySelectorAll<HTMLElement>("[data-sur-viz]").forEach((root) => {
     if (root.dataset.surVizMounted === "true") return
@@ -589,6 +1235,12 @@ function mountSurVisuals() {
       renderGmm(root)
     } else if (root.dataset.surViz === "hmm-viterbi") {
       renderHmm(root)
+    } else if (root.dataset.surViz === "svm-margin-kernel") {
+      renderSvm(root)
+    } else if (root.dataset.surViz === "pca-lda") {
+      renderPcaLda(root)
+    } else if (root.dataset.surViz === "det-threshold") {
+      renderDet(root)
     }
   })
 }

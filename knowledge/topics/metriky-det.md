@@ -7,9 +7,12 @@
 - Interpretace, který systém je lepší.
 - Generalizace a overfitting rozhodovací hranice.
 
+## Interaktivně
+
+<div class="sur-viz" data-sur-viz="det-threshold"></div>
+
 ## Typické zadání
 
 - Popište DET křivku a jak ji získáme pro jeden systém.
 - Jaký je rozdíl mezi false error a miss?
 - Jak vypadá rozhodovací hranice přetrénovaného klasifikátoru?
-
