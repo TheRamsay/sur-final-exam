@@ -10,6 +10,7 @@
 raw/discord/
 raw/discord-pins/
 raw/discord-analysis/
+raw/*.zip
 
 # Local Quartz build/test artifacts
 .quartz/

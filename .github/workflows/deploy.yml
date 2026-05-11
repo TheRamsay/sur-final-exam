@@ -46,6 +46,7 @@ jobs:
         run: |
           cp quartz.config.ts .quartz/quartz.config.ts
           cp quartz.layout.ts .quartz/quartz.layout.ts
+          cp -R quartz/* .quartz/quartz/
 
       - name: Build Quartz
         working-directory: .quartz

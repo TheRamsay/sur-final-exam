@@ -21,6 +21,7 @@ const config: QuartzConfig = {
       "raw/discord",
       "raw/discord-pins",
       "raw/discord-analysis",
+      "quartz",
       "quartz.config.ts",
       "quartz.layout.ts",
       ".env",

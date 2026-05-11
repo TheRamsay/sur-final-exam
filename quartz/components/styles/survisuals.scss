@@ -1,0 +1,131 @@
+.sur-viz {
+  margin: 1.25rem 0;
+}
+
+.sur-viz-shell {
+  border: 1px solid var(--lightgray);
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--light) 92%, var(--secondary));
+  overflow: hidden;
+}
+
+.sur-viz-head {
+  display: grid;
+  gap: 0.2rem;
+  padding: 0.85rem 1rem 0.7rem;
+  border-bottom: 1px solid var(--lightgray);
+}
+
+.sur-viz-title {
+  color: var(--dark);
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.sur-viz-subtitle {
+  color: var(--darkgray);
+  font-size: 0.88rem;
+  line-height: 1.35;
+}
+
+.sur-viz-body {
+  display: grid;
+  gap: 0.85rem;
+  padding: 0.9rem 1rem 1rem;
+}
+
+.sur-viz-canvas-wrap,
+.sur-viz-svg-wrap {
+  position: relative;
+  min-height: 280px;
+  border: 1px solid var(--lightgray);
+  border-radius: 6px;
+  background: var(--light);
+  overflow: hidden;
+}
+
+.sur-viz-canvas-wrap canvas,
+.sur-viz-svg-wrap svg {
+  display: block;
+  width: 100%;
+  min-height: 280px;
+}
+
+.sur-viz-controls {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 0.65rem;
+  align-items: end;
+}
+
+.sur-viz-control {
+  display: grid;
+  gap: 0.3rem;
+  color: var(--darkgray);
+  font-size: 0.82rem;
+}
+
+.sur-viz-control strong {
+  color: var(--dark);
+  font-size: 0.86rem;
+  font-weight: 650;
+}
+
+.sur-viz-control input[type="range"] {
+  width: 100%;
+  accent-color: var(--secondary);
+}
+
+.sur-viz-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.sur-viz-button {
+  min-height: 2.1rem;
+  border: 1px solid var(--lightgray);
+  border-radius: 6px;
+  padding: 0.3rem 0.65rem;
+  background: var(--light);
+  color: var(--dark);
+  font: inherit;
+  font-size: 0.86rem;
+  cursor: pointer;
+}
+
+.sur-viz-button:hover {
+  border-color: var(--secondary);
+  color: var(--secondary);
+}
+
+.sur-viz-readout {
+  min-height: 2.2rem;
+  border-left: 3px solid var(--secondary);
+  padding: 0.45rem 0.65rem;
+  background: color-mix(in srgb, var(--light) 86%, var(--highlight));
+  color: var(--darkgray);
+  font-size: 0.88rem;
+  line-height: 1.35;
+}
+
+.sur-viz-formula {
+  font-family: var(--codeFont);
+  font-size: 0.78rem;
+}
+
+@media all and (max-width: 680px) {
+  .sur-viz-head,
+  .sur-viz-body {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+
+  .sur-viz-canvas-wrap,
+  .sur-viz-svg-wrap,
+  .sur-viz-canvas-wrap canvas,
+  .sur-viz-svg-wrap svg {
+    min-height: 240px;
+  }
+}
