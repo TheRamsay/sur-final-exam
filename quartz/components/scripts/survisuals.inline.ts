@@ -106,10 +106,9 @@ function button(parent: HTMLElement, label: string, onClick: () => void) {
 }
 
 function sizeCanvas(canvas: HTMLCanvasElement, wrap: HTMLElement) {
-  const rect = wrap.getBoundingClientRect()
   const dpr = window.devicePixelRatio || 1
-  const width = Math.max(320, Math.floor(rect.width))
-  const height = Math.max(260, Math.floor(rect.height))
+  const width = Math.max(1, Math.floor(wrap.clientWidth || 320))
+  const height = Math.max(1, Math.floor(wrap.clientHeight || 280))
   canvas.width = Math.floor(width * dpr)
   canvas.height = Math.floor(height * dpr)
   canvas.style.width = `${width}px`

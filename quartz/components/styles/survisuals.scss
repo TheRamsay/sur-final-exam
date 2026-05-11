@@ -38,7 +38,8 @@
 .sur-viz-canvas-wrap,
 .sur-viz-svg-wrap {
   position: relative;
-  min-height: 280px;
+  height: clamp(260px, 46vw, 360px);
+  min-height: 0;
   border: 1px solid var(--lightgray);
   border-radius: 6px;
   background: var(--light);
@@ -49,7 +50,8 @@
 .sur-viz-svg-wrap svg {
   display: block;
   width: 100%;
-  min-height: 280px;
+  height: 100%;
+  min-height: 0;
 }
 
 .sur-viz-controls {
@@ -123,9 +125,7 @@
   }
 
   .sur-viz-canvas-wrap,
-  .sur-viz-svg-wrap,
-  .sur-viz-canvas-wrap canvas,
-  .sur-viz-svg-wrap svg {
-    min-height: 240px;
+  .sur-viz-svg-wrap {
+    height: clamp(240px, 64vw, 300px);
   }
 }
