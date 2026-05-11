@@ -146,3 +146,159 @@
     height: clamp(360px, 112vw, 460px);
   }
 }
+
+body[data-slug="knowledge/04-vzorce-formulace"] .center {
+  max-width: min(100%, 980px);
+}
+
+body[data-slug="knowledge/04-vzorce-formulace"] article.popover-hint > p:first-of-type {
+  margin-top: 0.2rem;
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--lightgray);
+  border-left: 4px solid var(--secondary);
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--light) 90%, var(--secondary));
+  color: var(--darkgray);
+  font-size: 1rem;
+  line-height: 1.45;
+}
+
+body[data-slug="knowledge/04-vzorce-formulace"] article.popover-hint > h2 {
+  margin-top: 2.1rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--lightgray);
+}
+
+body[data-slug="knowledge/04-vzorce-formulace"] article.popover-hint > h2:first-of-type {
+  margin-top: 1.4rem;
+}
+
+body[data-slug="knowledge/04-vzorce-formulace"] article.popover-hint > h3 {
+  margin-top: 1.6rem;
+}
+
+body[data-slug="knowledge/04-vzorce-formulace"] .callout {
+  border-radius: 8px;
+}
+
+body[data-slug="knowledge/04-vzorce-formulace"] .table-container {
+  margin: 1rem 0 1.35rem;
+  border: 1px solid var(--lightgray);
+  border-radius: 8px;
+  background: var(--light);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.04);
+  overflow: hidden;
+}
+
+body[data-slug="knowledge/04-vzorce-formulace"] .table-container table {
+  width: 100%;
+  margin: 0;
+  border-collapse: separate;
+  border-spacing: 0;
+  table-layout: fixed;
+  font-size: 0.92rem;
+  line-height: 1.35;
+}
+
+body[data-slug="knowledge/04-vzorce-formulace"] .table-container th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  border-bottom: 1px solid var(--lightgray);
+  background: color-mix(in srgb, var(--light) 86%, var(--secondary));
+  color: var(--dark);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+body[data-slug="knowledge/04-vzorce-formulace"] .table-container th,
+body[data-slug="knowledge/04-vzorce-formulace"] .table-container td {
+  padding: 0.72rem 0.82rem;
+  vertical-align: top;
+}
+
+body[data-slug="knowledge/04-vzorce-formulace"] .table-container td {
+  border-top: 1px solid color-mix(in srgb, var(--lightgray) 70%, transparent);
+}
+
+body[data-slug="knowledge/04-vzorce-formulace"] .table-container tbody tr:first-child td {
+  border-top: 0;
+}
+
+body[data-slug="knowledge/04-vzorce-formulace"] .table-container tbody tr:nth-child(even) {
+  background: color-mix(in srgb, var(--light) 96%, var(--lightgray));
+}
+
+body[data-slug="knowledge/04-vzorce-formulace"] .table-container tbody tr:hover {
+  background: color-mix(in srgb, var(--light) 88%, var(--highlight));
+}
+
+body[data-slug="knowledge/04-vzorce-formulace"] .table-container td:first-child {
+  width: 20%;
+  color: var(--dark);
+  font-weight: 700;
+}
+
+body[data-slug="knowledge/04-vzorce-formulace"] .table-container td:nth-child(2) {
+  width: 38%;
+  color: var(--dark);
+  max-width: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+body[data-slug="knowledge/04-vzorce-formulace"] .table-container td:nth-child(3) {
+  color: var(--darkgray);
+}
+
+body[data-slug="knowledge/04-vzorce-formulace"] .table-container .katex {
+  font-size: 0.98em;
+  white-space: normal;
+}
+
+body[data-slug="knowledge/04-vzorce-formulace"] .katex-display {
+  margin: 0.8rem 0 1.05rem;
+  padding: 0.8rem 0.95rem;
+  border: 1px solid var(--lightgray);
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--light) 94%, var(--secondary));
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+body[data-slug="knowledge/04-vzorce-formulace"] .katex-display > .katex {
+  font-size: 1.02em;
+}
+
+@media all and (max-width: 680px) {
+  body[data-slug="knowledge/04-vzorce-formulace"] article.popover-hint > p:first-of-type {
+    padding: 0.8rem 0.85rem;
+    font-size: 0.95rem;
+  }
+
+  body[data-slug="knowledge/04-vzorce-formulace"] .table-container {
+    margin-left: -0.25rem;
+    margin-right: -0.25rem;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+
+  body[data-slug="knowledge/04-vzorce-formulace"] .table-container table {
+    min-width: 680px;
+    font-size: 0.88rem;
+  }
+
+  body[data-slug="knowledge/04-vzorce-formulace"] .table-container th,
+  body[data-slug="knowledge/04-vzorce-formulace"] .table-container td {
+    padding: 0.62rem 0.68rem;
+  }
+
+  body[data-slug="knowledge/04-vzorce-formulace"] .katex-display {
+    margin-left: -0.25rem;
+    margin-right: -0.25rem;
+    padding: 0.72rem 0.8rem;
+    border-radius: 6px;
+  }
+}
