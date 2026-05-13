@@ -6,6 +6,8 @@ title: SUR Final Exam
 
 Statická Obsidian-friendly báze pro rekonstrukci starých zadání ze SUR.
 
+Online: [GitHub Pages](https://theramsay.github.io/sur-final-exam/) · [GitHub repo](https://github.com/TheRamsay/sur-final-exam)
+
 ## Start
 
 - [[knowledge/00-rozcestnik|Rozcestník]]

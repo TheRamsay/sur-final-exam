@@ -2,19 +2,22 @@
 
 Obsidian-friendly archiv zadání, oficiálních přednášek a přípravy na zkoušku z předmětu SUR.
 
-Hlavní zdroje pro rekonstrukci zadání jsou lokální Discord exporty. Tyto raw soubory jsou záměrně ignorované a nejsou součástí public repozitáře:
+Online verze: https://theramsay.github.io/sur-final-exam/
+
+Hlavní zdroje pro rekonstrukci zadání jsou Discord exporty a piny uložené v repozitáři:
 
 - `raw/discord/<channel>/<year>/<channel>.json` - roční okna 15. 4. až 1. 7.
 - `raw/discord-pins/<channel>/pins.json` - všechny aktuální piny
 - `raw/discord-pins/<channel>/media/` - stažené přílohy z pinů
-- `raw/discord-analysis/` - automatický scratchpad kandidátů
+- `raw/discord-analysis/` - automatický scratchpad kandidátů a souhrnů
 
-Token není uložený v repozitáři. Export skript ho čte z `USER_TOKEN` nebo ze stdin. Public obsah používá jen ruční digest a anonymizovanou citaci zdrojů.
+Token není uložený v repozitáři. Export skript ho čte z `USER_TOKEN` nebo ze stdin.
 
 Oficiální veřejné přednášky jsou stažené do `raw/sur-prednasky/` a převedené do čitelného Markdownu pod `slides/sur-prednasky/`.
 
 ## Start
 
+- [GitHub Pages](https://theramsay.github.io/sur-final-exam/)
 - [[knowledge/00-rozcestnik|Rozcestník]]
 - [[knowledge/05-oficialni-prednasky|Oficiální přednášky]]
 - [[slides/sur-prednasky/index|Převedené slidy]]
