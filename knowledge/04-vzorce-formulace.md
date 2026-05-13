@@ -18,6 +18,18 @@ Tahle stránka je tahák pro situaci, kdy koncept chápeš, ale potřebuješ ho 
 | SVM a kernel | $\min\tfrac12\lVert w\rVert^2$ při $y_i(w^Tx_i+b)\ge1$ | Větší margin odpovídá menší normě vah. |
 | ROC a DET | $TPR=TP/(TP+FN)$, $FPR=FP/(FP+TN)$ | ROC kreslí záchyt proti false alarmům; DET kreslí miss proti false alarmům. |
 
+## Oficiální opora ke vzorcům
+
+| Blok taháku | Otevři v přednáškách |
+|---|---|
+| Bayes, MLE, Gauss | [[slides/sur-prednasky/02_bayesovska_teorie/bayesovska_teorie.pdf|bayesovska_teorie.pdf]] |
+| GMM a EM | [[slides/sur-prednasky/02_bayesovska_teorie/EM-GMM.pdf|EM-GMM.pdf]], [[slides/sur-prednasky/02_bayesovska_teorie/ml_training_of_gmm.ipynb|ml_training_of_gmm.ipynb]] |
+| Lineární klasifikátory, perceptron, logistika | [[slides/sur-prednasky/04_lin_klasifikatory/lin_klasifikatory.pdf|lin_klasifikatory.pdf]] |
+| Softmax, cross entropy, NN | [[slides/sur-prednasky/05_neral_networks/NN_CNN_SVM.pdf|NN_CNN_SVM.pdf]] |
+| HMM a Viterbi | [[slides/sur-prednasky/06_hmm/statistical_models_for_automatic_speech_recognition.pptx|HMM/ASR PPTX]], [[slides/sur-prednasky/06_hmm/ANO_NE_speech_recognition.ipynb|ANO_NE notebook]] |
+| PCA/LDA, transformace, MFCC | [[slides/sur-prednasky/03_extrakce_priznaku/extrakce_priznaku.pdf|extrakce_priznaku.pdf]], [[slides/sur-prednasky/03_extrakce_priznaku/LDA.ipynb|LDA.ipynb]] |
+| SVM a kernel | [[slides/sur-prednasky/05_neral_networks/NN_CNN_SVM.pdf|NN_CNN_SVM.pdf]], [[slides/sur-prednasky/05_neral_networks/SVM.ipynb|SVM.ipynb]] |
+
 ## Základní pravděpodobnost a Bayes
 
 | Koncept | Standardní zápis | Jak to říct |

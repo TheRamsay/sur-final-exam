@@ -7,6 +7,13 @@
 - PCA vs LDA: PCA maximalizuje varianci, LDA hledá diskriminační směr mezi třídami.
 - Whitening/normalizace na `N(0, I)` a role ortonormální báze.
 
+## Přednášky
+
+- [[slides/sur-prednasky/03_extrakce_priznaku/LDA.ipynb|LDA notebook]]
+- [[slides/sur-prednasky/03_extrakce_priznaku/extrakce_priznaku.pdf|Extrakce příznaků PDF]]
+- [[slides/sur-prednasky/03_extrakce_priznaku/extrakce_priznaku.pptx|Extrakce příznaků PPTX]]
+- [[slides/sur-prednasky/04_lin_klasifikatory/lin_klasifikatory.pdf|Lineární klasifikátory]] pro LDA jako klasifikátor.
+
 ## Interaktivně
 
 <div class="sur-viz" data-sur-viz="pca-lda"></div>

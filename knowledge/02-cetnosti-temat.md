@@ -1,6 +1,6 @@
 # Četnosti témat
 
-Zdroj: `raw/discord-analysis/topic_counts.tsv`, piny, ručně sjednocené termíny a lokální legacy přípravový dokument.
+Zdroj: `raw/discord-analysis/topic_counts.tsv`, piny, ručně sjednocené termíny, lokální legacy přípravový dokument a oficiální přednášky v [[slides/sur-prednasky/index|slides/sur-prednasky]].
 
 ## Automatický signál z Discord oken
 
@@ -31,6 +31,19 @@ Zdroj: `raw/discord-analysis/topic_counts.tsv`, piny, ručně sjednocené termí
 | [[knowledge/topics/nn-gradienty|NN/gradienty]] | střední až vysoký | Jacobian, backprop, ReLU/sigmoid síť |
 | [[knowledge/topics/metriky-det|DET/metriky]] | střední | DET, threshold, false alarm/miss |
 | [[knowledge/topics/knn-regularizace-validace|KNN/regularizace/validace]] | doplňkový | KNN soft decision, regularizace, normalizace, cross-validace |
+
+## Mapování na oficiální přednášky
+
+| Téma | Oficiální opora |
+|---|---|
+| Bayes/GMM/HMM | [[slides/sur-prednasky/02_bayesovska_teorie/bayesovska_teorie.pdf|Bayesovská teorie]], [[slides/sur-prednasky/02_bayesovska_teorie/EM-GMM.pdf|EM-GMM]], [[slides/sur-prednasky/06_hmm/statistical_models_for_automatic_speech_recognition.pptx|HMM/ASR modely]] |
+| Lineární klasifikátory | [[slides/sur-prednasky/04_lin_klasifikatory/lin_klasifikatory.pdf|Lineární klasifikátory]] |
+| SVM/kernel | [[slides/sur-prednasky/05_neral_networks/NN_CNN_SVM.pdf|NN_CNN_SVM]], [[slides/sur-prednasky/05_neral_networks/SVM.ipynb|SVM notebook]] |
+| PCA/LDA/transformace | [[slides/sur-prednasky/03_extrakce_priznaku/LDA.ipynb|LDA notebook]], [[slides/sur-prednasky/03_extrakce_priznaku/extrakce_priznaku.pdf|Extrakce příznaků]] |
+| Softmax/cross entropy | [[slides/sur-prednasky/05_neral_networks/NN_CNN_SVM.pdf|NN_CNN_SVM]], [[slides/sur-prednasky/04_lin_klasifikatory/lin_klasifikatory.pdf|Lineární klasifikátory]] |
+| NN/gradienty | [[slides/sur-prednasky/05_neral_networks/NN_CNN_SVM.pdf|NN_CNN_SVM]], [[slides/sur-prednasky/05_neral_networks/NN classifier.ipynb|NN classifier notebook]] |
+| DET/metriky | [[slides/sur-prednasky/01_uvod/SUR_uvod.pdf|SUR úvod]], [[knowledge/topics/metriky-det|topic DET]] |
+| KNN/regularizace/validace | [[slides/sur-prednasky/02_bayesovska_teorie/SUR-gaussians.ipynb|SUR gaussians notebook]], [[knowledge/topics/knn-regularizace-validace|topic KNN]] |
 
 ## Doplňkový signál z legacy zipu
 

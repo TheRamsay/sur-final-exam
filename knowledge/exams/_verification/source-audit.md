@@ -9,6 +9,24 @@
 
 Celkem exportováno 8707 zpráv v ročních oknech a 24 pinů.
 
+## Oficiální přednášky
+
+Veřejný index přednášek SUR byl stažen do `raw/sur-prednasky/` a převeden do [[slides/sur-prednasky/index|slides/sur-prednasky]].
+
+| Metrika | Hodnota |
+|---|---:|
+| Stažené raw soubory | 45 |
+| Markdown převody | 32 |
+| Převoditelné formáty | PDF, PPTX, PPT, IPYNB |
+
+Využití:
+
+- přesné teoretické formulace a terminologie,
+- dohledání kontextu k opakovaným archetypům,
+- kontrola vzorců ve [[knowledge/04-vzorce-formulace|vzorcích a formulacích]].
+
+Limit: přednášky nepotvrzují, že se konkrétní otázka objevila ve zkoušce; k tomu slouží piny, konverzace a legacy dokumenty.
+
 ## Legacy zip
 
 Lokální ignorovaný zip doplňuje starší FIT/IKR materiály:

@@ -8,6 +8,14 @@
 - GMM jako model se skrytou proměnnou, `p(x)` a EM kroky.
 - HMM: generování `X` ze stavové sekvence `S`, výpočet `p(X|S)`, `P(S)` a `p(X)`, Viterbi.
 
+## Přednášky
+
+- [[slides/sur-prednasky/02_bayesovska_teorie/bayesovska_teorie.pdf|Bayesovská teorie PDF]]
+- [[slides/sur-prednasky/02_bayesovska_teorie/EM-GMM.pdf|EM-GMM PDF]]
+- [[slides/sur-prednasky/02_bayesovska_teorie/ml_training_of_gmm.ipynb|GMM training notebook]]
+- [[slides/sur-prednasky/06_hmm/statistical_models_for_automatic_speech_recognition.pptx|HMM / ASR modely]]
+- [[slides/sur-prednasky/06_hmm/ANO_NE_speech_recognition.ipynb|ANO_NE HMM notebook]]
+
 ## Interaktivně
 
 <div class="sur-viz" data-sur-viz="bayes-map"></div>

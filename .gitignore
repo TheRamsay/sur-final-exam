@@ -4,7 +4,7 @@
 *.swo
 
 # Obsidian local UI state
-.obsidian/workspace.json
+.obsidian/
 
 # Large raw Discord exports, keep local for now
 raw/discord/

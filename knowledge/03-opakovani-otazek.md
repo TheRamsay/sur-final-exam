@@ -29,6 +29,19 @@ Podpůrné zdroje:
 - Půlsemestrálky: dobré na aktuální důraz, ale nejsou finální termín.
 - Fragmenty dalších opravných: dobré na potvrzení opakování, ale ne na přesné počty.
 - [[knowledge/exams/2015-2016/2016-05-17-ikr-question-bank|2016 otázkový dokument]] a [[knowledge/exams/legacy/pre-2016-fit-guide|legacy FIT/IKR guide]]: zdroj starší banky, ze které se recyklují koncepty.
+- [[knowledge/05-oficialni-prednasky|Oficiální přednášky]]: nejlepší opora pro přesné formulace, když je archetyp jasný z minulých zadání.
+
+## Čtení archetypů v přednáškách
+
+| Archetyp | Přednášky k ověření |
+|---|---|
+| MLE, Bayes, MAP, Gauss | [[slides/sur-prednasky/02_bayesovska_teorie/bayesovska_teorie.pdf|Bayesovská teorie]] |
+| GMM a EM | [[slides/sur-prednasky/02_bayesovska_teorie/EM-GMM.pdf|EM-GMM]], [[slides/sur-prednasky/02_bayesovska_teorie/ml_training_of_gmm.ipynb|GMM notebook]] |
+| Lineární gaussovský klasifikátor, perceptron, logistika | [[slides/sur-prednasky/04_lin_klasifikatory/lin_klasifikatory.pdf|Lineární klasifikátory]] |
+| Softmax, cross entropy, NN derivace | [[slides/sur-prednasky/05_neral_networks/NN_CNN_SVM.pdf|NN_CNN_SVM]], [[slides/sur-prednasky/05_neral_networks/NN classifier.ipynb|NN classifier notebook]] |
+| SVM, margin, kernel | [[slides/sur-prednasky/05_neral_networks/NN_CNN_SVM.pdf|NN_CNN_SVM]], [[slides/sur-prednasky/05_neral_networks/SVM.ipynb|SVM notebook]] |
+| HMM, Viterbi, `p(X,S)`, `p(X)` | [[slides/sur-prednasky/06_hmm/statistical_models_for_automatic_speech_recognition.pptx|HMM/ASR modely]], [[slides/sur-prednasky/06_hmm/ANO_NE_speech_recognition.ipynb|ANO_NE notebook]] |
+| PCA/LDA, MFCC, transformace | [[slides/sur-prednasky/03_extrakce_priznaku/extrakce_priznaku.pdf|Extrakce příznaků]], [[slides/sur-prednasky/03_extrakce_priznaku/LDA.ipynb|LDA notebook]] |
 
 ## Hrubá míra opakování
 

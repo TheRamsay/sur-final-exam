@@ -11,6 +11,12 @@
 - Normalizace na nulovou střední hodnotu a jednotkový rozptyl: zrychluje a stabilizuje učení, hlavně u NN a gradientních metod.
 - Cross-validace / validační sada: slouží k odhadu generalizace a ladění hyperparametrů.
 
+## Přednášky
+
+- [[slides/sur-prednasky/02_bayesovska_teorie/SUR-gaussians.ipynb|SUR gaussians notebook]] pro KNN příklad.
+- [[slides/sur-prednasky/01_uvod/SUR_uvod.pdf|SUR úvod]] pro generalizaci/testování.
+- [[slides/sur-prednasky/05_neral_networks/NN_CNN_SVM.pdf|NN_CNN_SVM]] pro regularizaci a učení modelů v širším kontextu.
+
 ## Typické formulace
 
 - Popište, jak funguje měkké rozhodování u KNN.

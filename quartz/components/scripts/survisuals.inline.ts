@@ -12,6 +12,7 @@ const colors = {
   grid: "#d8d1c7",
   paper: "#fbfaf7",
   good: "#3f7a5f",
+  goodLight: "#b9d7c4",
   bad: "#b94a48",
 }
 
@@ -228,6 +229,19 @@ function clamp(value: number, min: number, max: number) {
   return Math.max(min, Math.min(max, value))
 }
 
+function sigmoid(value: number) {
+  return 1 / (1 + Math.exp(-clamp(value, -40, 40)))
+}
+
+function softmax(values: number[], temperature: number) {
+  const temp = Math.max(0.08, temperature)
+  const scaled = values.map((value) => value / temp)
+  const maxValue = Math.max(...scaled)
+  const exp = scaled.map((value) => Math.exp(value - maxValue))
+  const sum = exp.reduce((total, value) => total + value, 0)
+  return exp.map((value) => value / sum)
+}
+
 function seeded(seed: number) {
   let state = seed >>> 0
   return () => {
@@ -391,6 +405,388 @@ function drawCovEllipse(
     else ctx.lineTo(map.toX(x), map.toY(y))
   }
   ctx.stroke()
+}
+
+function drawProbabilityBars(
+  ctx: CanvasRenderingContext2D,
+  rect: Rect,
+  labels: string[],
+  values: number[],
+  fills: string[],
+  threshold?: number,
+) {
+  const left = rect.x + 56
+  const right = rect.x + rect.w - 46
+  const top = rect.y + 42
+  const rowGap = 16
+  const rowHeight = Math.min(34, (rect.h - 58 - rowGap * (labels.length - 1)) / labels.length)
+  const barWidth = Math.max(40, right - left)
+
+  ctx.font = "12px sans-serif"
+  labels.forEach((label, i) => {
+    const y = top + i * (rowHeight + rowGap)
+    const value = clamp(values[i], 0, 1)
+
+    ctx.fillStyle = colors.muted
+    ctx.textAlign = "right"
+    ctx.fillText(label, left - 10, y + rowHeight * 0.68)
+
+    ctx.fillStyle = "rgba(216, 209, 199, 0.42)"
+    ctx.fillRect(left, y, barWidth, rowHeight)
+
+    ctx.fillStyle = fills[i]
+    ctx.fillRect(left, y, barWidth * value, rowHeight)
+
+    if (threshold !== undefined) {
+      const tx = left + barWidth * threshold
+      ctx.strokeStyle = colors.ink
+      ctx.lineWidth = 1
+      ctx.setLineDash([4, 4])
+      ctx.beginPath()
+      ctx.moveTo(tx, y - 3)
+      ctx.lineTo(tx, y + rowHeight + 3)
+      ctx.stroke()
+      ctx.setLineDash([])
+    }
+
+    ctx.fillStyle = colors.ink
+    ctx.textAlign = "left"
+    ctx.fillText(value.toFixed(2), right + 10, y + rowHeight * 0.68)
+  })
+  ctx.textAlign = "left"
+}
+
+function renderSigmoid(root: HTMLElement) {
+  const body = shell(
+    root,
+    "Sigmoid / logit",
+    "Sigmoid prevadi linearni score z na pravdepodobnost mezi 0 a 1.",
+  )
+  const { wrap, canvas } = canvasPanel(body)
+  const controlBox = controls(body)
+  const info = readout(body)
+  let weight = 1.25
+  let bias = -0.2
+
+  function draw() {
+    const { ctx, width, height } = sizeCanvas(canvas, wrap)
+    const rect = { x: 42, y: 28, w: width - 70, h: height - 62 }
+    const map = panelWorld(rect, -5, 5, -0.08, 1.08)
+    const threshold = -bias / weight
+
+    ctx.clearRect(0, 0, width, height)
+    drawPanelFrame(ctx, rect, "sigma(wx+b)")
+    drawPanelAxes(ctx, map)
+
+    ctx.strokeStyle = colors.grid
+    ctx.lineWidth = 1
+    ctx.setLineDash([5, 5])
+    ctx.beginPath()
+    ctx.moveTo(map.toX(-5), map.toY(0.5))
+    ctx.lineTo(map.toX(5), map.toY(0.5))
+    if (threshold >= -5 && threshold <= 5) {
+      ctx.moveTo(map.toX(threshold), map.toY(-0.08))
+      ctx.lineTo(map.toX(threshold), map.toY(1.08))
+    }
+    ctx.stroke()
+    ctx.setLineDash([])
+
+    ctx.strokeStyle = colors.blue
+    ctx.lineWidth = 3
+    ctx.beginPath()
+    for (let i = 0; i <= 160; i++) {
+      const x = -5 + (i / 160) * 10
+      const y = sigmoid(weight * x + bias)
+      if (i === 0) ctx.moveTo(map.toX(x), map.toY(y))
+      else ctx.lineTo(map.toX(x), map.toY(y))
+    }
+    ctx.stroke()
+
+    const x0 = 0
+    const p0 = sigmoid(weight * x0 + bias)
+    drawPoint(ctx, map, { x: x0, y: p0 }, colors.rust, 6)
+
+    ctx.fillStyle = colors.muted
+    ctx.font = "12px sans-serif"
+    ctx.fillText("p=0.5", map.toX(-4.85), map.toY(0.5) - 8)
+    ctx.fillText(`x0=${threshold.toFixed(2)}`, map.toX(clamp(threshold, -4.7, 4.7)) + 6, map.toY(0.08))
+
+    formulaReadout(
+      info,
+      "\\sigma(z)=\\frac{1}{1+e^{-z}},\\qquad z=wx+b",
+      `Aktualne <strong>w=${weight.toFixed(2)}</strong>, <strong>b=${bias.toFixed(
+        2,
+      )}</strong>. Bod <strong>x=0</strong> ma <strong>p=${p0.toFixed(
+        2,
+      )}</strong>; hranice p=0.5 je tam, kde <strong>wx+b=0</strong>.`,
+    )
+  }
+
+  range(controlBox, "w", 0.25, 3.5, 0.05, weight, (value) => {
+    weight = value
+    draw()
+  })
+  range(controlBox, "b", -3, 3, 0.05, bias, (value) => {
+    bias = value
+    draw()
+  })
+
+  const resize = new ResizeObserver(draw)
+  resize.observe(wrap)
+  window.addCleanup(() => resize.disconnect())
+  draw()
+}
+
+function makeLogRegData() {
+  const rand = seeded(20260513)
+  const data: LabeledPoint[] = []
+  for (let i = 0; i < 26; i++) {
+    data.push({ x: 0.9 + normal(rand) * 0.65, y: 0.62 + normal(rand) * 0.5, label: 1 })
+    data.push({ x: -0.95 + normal(rand) * 0.62, y: -0.62 + normal(rand) * 0.52, label: -1 })
+  }
+  data.push({ x: -0.22, y: 0.52, label: 1 })
+  data.push({ x: 0.3, y: -0.44, label: -1 })
+  return data
+}
+
+function renderLogReg(root: HTMLElement) {
+  const body = shell(
+    root,
+    "Logisticka regrese / rozhodovaci hranice",
+    "Linearni score urci hranici p=0.5; sigmoid z nej dela posteriorni pravdepodobnost.",
+  )
+  const { wrap, canvas } = canvasPanel(body)
+  const controlBox = controls(body)
+  const info = readout(body)
+  const data = makeLogRegData()
+  let angle = 0.82
+  let bias = 0.05
+
+  function draw() {
+    const { ctx, width, height } = sizeCanvas(canvas, wrap)
+    const map = world(width, height)
+    const w = { x: Math.cos(angle) * 1.35, y: Math.sin(angle) * 1.35 }
+    const norm2 = w.x * w.x + w.y * w.y
+    const pointOnBoundary = { x: (-bias * w.x) / norm2, y: (-bias * w.y) / norm2 }
+    const direction = { x: -w.y, y: w.x }
+
+    ctx.clearRect(0, 0, width, height)
+    const step = 7
+    for (let py = 0; py < height; py += step) {
+      for (let px = 0; px < width; px += step) {
+        const x = map.fromX(px)
+        const y = map.fromY(py)
+        const p = sigmoid(w.x * x + w.y * y + bias)
+        ctx.fillStyle = mixColor(colors.rustLight, colors.blueLight, p)
+        ctx.globalAlpha = 0.22 + Math.abs(p - 0.5) * 0.38
+        ctx.fillRect(px, py, step + 1, step + 1)
+      }
+    }
+    ctx.globalAlpha = 1
+    drawAxes(ctx, width, height)
+    drawWorldLine(ctx, map, pointOnBoundary, direction, colors.ink, 2.6)
+
+    let ce = 0
+    for (const p of data) {
+      const prob = sigmoid(w.x * p.x + w.y * p.y + bias)
+      const y = p.label > 0 ? 1 : 0
+      ce += -(y * Math.log(Math.max(prob, 1e-9)) + (1 - y) * Math.log(Math.max(1 - prob, 1e-9)))
+      drawPoint(ctx, map, p, p.label > 0 ? colors.blue : colors.rust, 4.6)
+    }
+    ce /= data.length
+
+    ctx.fillStyle = colors.ink
+    ctx.font = "13px sans-serif"
+    ctx.fillText("p(C=1|x)>0.5", map.toX(0.55), map.toY(1.85))
+    ctx.fillText("p(C=1|x)<0.5", map.toX(-2.65), map.toY(-1.75))
+
+    formulaReadout(
+      info,
+      "P(C=1\\mid x)=\\sigma(w^\\top x+b),\\qquad \\hat C=\\mathbb{1}[P(C=1\\mid x)\\ge 0.5]",
+      `Otocenim vah se meni smer hranice. Aktualni prumerna binary cross entropy na bodech je <strong>${ce.toFixed(
+        2,
+      )}</strong>.`,
+    )
+  }
+
+  range(controlBox, "uhel w", -2.6, 2.6, 0.02, angle, (value) => {
+    angle = value
+    draw()
+  })
+  range(controlBox, "b", -2.2, 2.2, 0.05, bias, (value) => {
+    bias = value
+    draw()
+  })
+
+  const resize = new ResizeObserver(draw)
+  resize.observe(wrap)
+  window.addCleanup(() => resize.disconnect())
+  draw()
+}
+
+function multiclassScores(x: number, y: number) {
+  return [1.15 * x + 0.25 * y + 0.2, -0.45 * x + 1.2 * y - 0.05, -0.7 * x - 1.05 * y + 0.05]
+}
+
+function renderSoftmaxMulticlass(root: HTMLElement) {
+  const body = shell(
+    root,
+    "Multiclass softmax",
+    "Jedna ukazka patri prave do jedne tridy; softmax pravdepodobnosti mezi sebou soutezi a sectou se na 1.",
+  )
+  const { wrap, canvas } = canvasPanel(body)
+  const controlBox = controls(body)
+  const info = readout(body)
+  const labels = ["C1", "C2", "C3"]
+  const fills = [colors.blue, colors.rust, colors.good]
+  const lights = [colors.blueLight, colors.rustLight, colors.goodLight]
+  let xValue = 0.55
+  let yValue = 0.25
+  let temperature = 1.0
+
+  function draw() {
+    const { ctx, width, height } = sizeCanvas(canvas, wrap)
+    ctx.clearRect(0, 0, width, height)
+
+    const gap = 18
+    const vertical = width < 620
+    const plane: Rect = vertical
+      ? { x: 34, y: 30, w: width - 68, h: (height - 90) * 0.56 }
+      : { x: 38, y: 38, w: (width - 96) * 0.58, h: height - 76 }
+    const bars: Rect = vertical
+      ? { x: 34, y: plane.y + plane.h + gap, w: width - 68, h: height - plane.y - plane.h - gap - 24 }
+      : { x: plane.x + plane.w + gap, y: 38, w: width - plane.x - plane.w - gap - 38, h: height - 76 }
+    const map = panelWorld(plane, -3, 3, -2.2, 2.2)
+
+    drawPanelFrame(ctx, plane, "feature space")
+    drawPanelFrame(ctx, bars, "posterior P(C|x)")
+
+    const step = 7
+    for (let py = plane.y; py < plane.y + plane.h; py += step) {
+      for (let px = plane.x; px < plane.x + plane.w; px += step) {
+        const x = map.fromX(px)
+        const y = map.fromY(py)
+        const probs = softmax(multiclassScores(x, y), temperature)
+        const best = probs.indexOf(Math.max(...probs))
+        ctx.fillStyle = lights[best]
+        ctx.globalAlpha = 0.2 + probs[best] * 0.4
+        ctx.fillRect(px, py, step + 1, step + 1)
+      }
+    }
+    ctx.globalAlpha = 1
+    drawPanelAxes(ctx, map)
+    drawPoint(ctx, map, { x: xValue, y: yValue }, colors.ink, 7)
+
+    const probs = softmax(multiclassScores(xValue, yValue), temperature)
+    const best = probs.indexOf(Math.max(...probs))
+    drawProbabilityBars(ctx, bars, labels, probs, fills)
+
+    ctx.fillStyle = colors.muted
+    ctx.font = "12px sans-serif"
+    ctx.fillText(`x=(${xValue.toFixed(2)}, ${yValue.toFixed(2)})`, map.toX(xValue) + 10, map.toY(yValue) - 10)
+
+    formulaReadout(
+      info,
+      "P(C=k\\mid x)=\\frac{e^{z_k}}{\\sum_j e^{z_j}},\\qquad \\sum_k P(C=k\\mid x)=1",
+      `Vitez je <strong>${labels[best]}</strong>. Teplota <strong>T=${temperature.toFixed(
+        2,
+      )}</strong> meni ostrost rozdeleni, ale pravdepodobnosti porad tvori jednu distribuci.`,
+    )
+  }
+
+  range(controlBox, "x1", -2.6, 2.6, 0.05, xValue, (value) => {
+    xValue = value
+    draw()
+  })
+  range(controlBox, "x2", -2.0, 2.0, 0.05, yValue, (value) => {
+    yValue = value
+    draw()
+  })
+  range(controlBox, "T", 0.35, 2.8, 0.05, temperature, (value) => {
+    temperature = value
+    draw()
+  })
+
+  const resize = new ResizeObserver(draw)
+  resize.observe(wrap)
+  window.addCleanup(() => resize.disconnect())
+  draw()
+}
+
+function renderMultilabel(root: HTMLElement) {
+  const body = shell(
+    root,
+    "Multilabel sigmoid heads",
+    "Kazdy label ma vlastni sigmoid; vysledky se nesectou na 1 a aktivnich labelu muze byt vic naraz.",
+  )
+  const { wrap, canvas } = canvasPanel(body)
+  const controlBox = controls(body)
+  const info = readout(body)
+  const labels = ["y1", "y2", "y3"]
+  const fills = [colors.blue, colors.rust, colors.good]
+  const heads = [
+    { w: { x: 1.05, y: 0.45 }, b: -0.2 },
+    { w: { x: -0.55, y: 1.15 }, b: -0.15 },
+    { w: { x: -0.75, y: -0.9 }, b: 0.25 },
+  ]
+  let xValue = 0.65
+  let yValue = 0.35
+
+  function draw() {
+    const { ctx, width, height } = sizeCanvas(canvas, wrap)
+    ctx.clearRect(0, 0, width, height)
+
+    const gap = 18
+    const vertical = width < 620
+    const plane: Rect = vertical
+      ? { x: 34, y: 30, w: width - 68, h: (height - 90) * 0.56 }
+      : { x: 38, y: 38, w: (width - 96) * 0.58, h: height - 76 }
+    const bars: Rect = vertical
+      ? { x: 34, y: plane.y + plane.h + gap, w: width - 68, h: height - plane.y - plane.h - gap - 24 }
+      : { x: plane.x + plane.w + gap, y: 38, w: width - plane.x - plane.w - gap - 38, h: height - 76 }
+    const map = panelWorld(plane, -3, 3, -2.2, 2.2)
+
+    drawPanelFrame(ctx, plane, "tri nezavisle hranice")
+    drawPanelFrame(ctx, bars, "P(y_k=1|x)")
+    drawPanelAxes(ctx, map)
+
+    heads.forEach((head, i) => {
+      const norm2 = head.w.x * head.w.x + head.w.y * head.w.y
+      const pointOnBoundary = { x: (-head.b * head.w.x) / norm2, y: (-head.b * head.w.y) / norm2 }
+      const direction = { x: -head.w.y, y: head.w.x }
+      drawWorldLine(ctx, map, pointOnBoundary, direction, fills[i], 2.2, [8, 5])
+      ctx.fillStyle = fills[i]
+      ctx.font = "12px sans-serif"
+      ctx.fillText(labels[i], map.toX(pointOnBoundary.x + direction.x * 1.8), map.toY(pointOnBoundary.y + direction.y * 1.8))
+    })
+
+    const probs = heads.map((head) => sigmoid(head.w.x * xValue + head.w.y * yValue + head.b))
+    drawPoint(ctx, map, { x: xValue, y: yValue }, colors.ink, 7)
+    drawProbabilityBars(ctx, bars, labels, probs, fills, 0.5)
+
+    const active = probs.map((value, i) => (value >= 0.5 ? labels[i] : "")).filter(Boolean)
+    formulaReadout(
+      info,
+      "P(y_k=1\\mid x)=\\sigma(w_k^\\top x+b_k),\\qquad \\hat y_k=\\mathbb{1}[P(y_k=1\\mid x)\\ge 0.5]",
+      `Aktivni labely: <strong>${active.length ? active.join(", ") : "zadny"}</strong>. Soucet pravdepodobnosti je <strong>${probs
+        .reduce((sum, value) => sum + value, 0)
+        .toFixed(2)}</strong>, tedy nemusi byt 1.`,
+    )
+  }
+
+  range(controlBox, "x1", -2.6, 2.6, 0.05, xValue, (value) => {
+    xValue = value
+    draw()
+  })
+  range(controlBox, "x2", -2.0, 2.0, 0.05, yValue, (value) => {
+    yValue = value
+    draw()
+  })
+
+  const resize = new ResizeObserver(draw)
+  resize.observe(wrap)
+  window.addCleanup(() => resize.disconnect())
+  draw()
 }
 
 function renderBayes(root: HTMLElement) {
@@ -1229,7 +1625,15 @@ function mountSurVisuals() {
     if (root.dataset.surVizMounted === "true") return
     root.dataset.surVizMounted = "true"
 
-    if (root.dataset.surViz === "bayes-map") {
+    if (root.dataset.surViz === "sigmoid-logit") {
+      renderSigmoid(root)
+    } else if (root.dataset.surViz === "logreg-binary") {
+      renderLogReg(root)
+    } else if (root.dataset.surViz === "softmax-multiclass") {
+      renderSoftmaxMulticlass(root)
+    } else if (root.dataset.surViz === "multilabel-sigmoids") {
+      renderMultilabel(root)
+    } else if (root.dataset.surViz === "bayes-map") {
       renderBayes(root)
     } else if (root.dataset.surViz === "gmm-em") {
       renderGmm(root)
