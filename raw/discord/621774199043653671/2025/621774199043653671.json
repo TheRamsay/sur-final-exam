@@ -1,0 +1,22 @@
+{
+  "guild": {
+    "id": "461541385204400138",
+    "name": "VUT FIT",
+    "iconUrl": "https://cdn.discordapp.com/icons/461541385204400138/a_f3b27532e370b3269df978471709558f.gif?size=512"
+  },
+  "channel": {
+    "id": "621774199043653671",
+    "type": "GuildTextChat",
+    "categoryId": "1203724153740595270",
+    "category": "letni magistersky semestr 2",
+    "name": "sur-public",
+    "topic": "Strojové učení a rozpoznávání"
+  },
+  "dateRange": {
+    "after": "2025-04-15T00:00:00+00:00",
+    "before": "2025-07-01T00:00:00+00:00"
+  },
+  "exportedAt": "2026-05-11T08:49:50.325997+00:00",
+  "messages": [],
+  "messageCount": 0
+}

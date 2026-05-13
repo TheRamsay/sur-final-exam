@@ -1,0 +1,276 @@
+Semestrálnı́ zkouška IKR - 17. 5. 2016,
+
+Login: .....................                                                  Podpis: .........................
+  1. Co to je Detection Error Trade-off (DET) křiva? Čemu odpovidá jeden konkrétni bod na této křivce?
+     Čemu pro takový bod odpovı́dajı́ hodnoty na x-ové a y-nové souřadnici? Jak vytvořı́me DET křivku
+     (jak zı́skáme různé body na teto křivce) pro jeden konkrétni detekčnı́ systém?
+
+
+
+
+  2. Co rozumı́me pojmem ”generalizace klasifikátoru”?
+
+
+
+
+  3. Klasifikátory můžeme rozdělit na generativnı́ (např. lineárnı́ gaussovský klasifikátor, klasifikátory
+     založené na GMM a HMM, ...) a diskriminativnı́ (např. logistická regrese, SVM, neuronové sı́tě, ...).
+     Vysvětlete v čem se tyto dva přı́stupy lišı́ a jaké jsou jejich výhody a nevýhody.
+4. Popište, jak provedeme klasifikaci nového vzoru metodou K-nejbližšı́ch sousedů (K-nearest neigh-
+   bours).
+
+
+
+
+5. Jak pracuje klasifikátor založený na metodě k-nejbližšı́ch sousedů (K-nearest neighbours). Jaké jsou
+   jeho výhody a nevýhody?
+
+
+
+
+6. U jednotlivých trénovacı́ch vzorů často předpokládáme, že jsou na sobě statisticky nezávyslé. Co to
+   znamená? Jaká výhoda či zjednodušenı́ z toho plyne pro trénovánı́ klasifikátoru? Např. uvažujte
+   jakou formu v takovém přı́padě má Maximum Likelihod objektivnı́ funkce.
+7. Co to je apriornı́ pravděpodobnost a jakou hraje roli při maximum a-posteriori klasifikaci (MAP
+   classification)?
+
+
+
+
+8. Co je klasifikačnı́ pravidlo maximálnı́ aposteriornı́ pravděpodobnosti (Maximum a-posteriory - MAP).
+   Uveďte přı́klad nějakého konkrétnı́ho klasifikátorů, u kterého toto pravidlo můžeme použı́t.
+
+
+
+
+9. Mějme natrénované pravděpodobnostnı́ modely (např. GMM) popisujı́cı́ rozloženı́ hustoty pravděpodobnost
+   přı́znaků p(x|C1 ) a p(x|C2 ) dvou třı́d C1 a C2 . Pro trénovánı́ těchto modelů jsme měli k dispozici 1000
+   trénovacı́ch vzorů pro třı́du C1 a 2000 trénovacı́ch vzorů pro třı́du C2 . Vı́me ale, že v cı́lové aplikaci
+   nám bude přicházet desetkrát vı́ce vzorů z třı́dy C1 , než z třı́dy C2 . Napište, jak v cı́lové aplikaci
+   budeme klasifikovat nově přı́chozı́ vzor x, tak abychom minimalizovali pravděpodobnost chyby.
+10. Napište bayesův vzorec/teorém (Bayes rule). Popište jednotlivé výrazy v tomto vzorci. Popište jak
+    se tento vzorec využije při klasifikaci pomocı́ nějakého generativniho modelu (např. Gaussovský
+    model nebo GMM) a jak v takovém přı́padě zı́skáme jednotlivé výrazy v bayesově vzorci.
+
+
+
+
+11. Jedno procento populace má určitou nemoc. U testovaných osob trpı́cı́ch touto nemocı́ je test
+    pozitivnı́ v polovině přı́padů. Test je ovšem pozitivnı́ také pro 5% osob, které touto nemocı́ netrpı́.
+    Jestliže u náhodně vybrané osoby má test pozitivnı́ výsledek, jaká je pravděpodobnost, že je tato
+    osoba skutečně nemocná?
+
+
+
+
+12. Jak odhadnu podmı́něnou pravděpodobnost, že dostanu infarkt když budu tlustý P (inf arkt|tlusty)
+    pokud mám statistiky pořı́zené na velkém vzorku populace, kde je u každého člověka záznam o tom
+    zda byl tlustý a zda prodělal infarkt.
+
+
+
+
+13. Na velkém vzorku N žen jsme provedli průzkum a rozdělili je do dvou třı́d hloupá, chytrá. Současně
+    jsme si u každého pozorovaného subjektu poznamenali, zda se jednalo o blondýnku či nikoli. Jak
+    z našich sezbı́raných statistik odhadneme podmı́něnou pravděpodobnost P (hloupá|blondýnka), když
+    budeme naivně předpokládat, že hloupost žen záležı́ pouze na barvě vlasů.
+
+
+
+
+14. Co to je obecně (pro jakýkoli pravděpodobnostnı́ model) odhad parametrů s maximálnı́ věrohodnosti
+    (Maximum Likelihood - ML)? Co je vstupem a výstupem tohoto procesu? Jakou objektivnı́ funkci se
+    snažı́me maximalizovat? Napište alespoň obecný matematický výraz. Jaké parametry odhadujeme?
+    Uveďte přı́klad.
+15. Odhad střednı́ hodnoty jednorozměrného gaussovského rozloženı́ PNs maximálnı́ věrohodnostı́ (Max-
+                                                                      1
+    imum Likelihood) je prostý průměr trénovacı́ch dat: µ = N n=1 xn . Popište, jak se k tomuto
+    výsledku dojde. Napište vzoreček objektivnı́ funkce, kterou se snažı́me maximalizovat (stačı́ v obecné
+    podobě pro jakýkoli model). Naznačte postup řešenı́. Plné odvozenı́ bude oceněno bonusovým bo-
+    dem.
+
+
+
+
+16. Pro maximum likelihood trénovánı́ modelu směsice gaussovských rozloženı́ (Gaussian Mixture Model
+    - GMM) použı́váme ”Expectation Maximization” (EM) algoritmus, který sestává ze dvou kroků,
+    které iterativně provádı́me. Popište tyto kroky. Co se ve kterém kroku odhaduje a jak na sobě tyto
+    kroky závisı́? Rozhodnete-li se zapsat kroky konkrétnı́mi vzorečky, vysvětlete slovně jejich význam.
+17. Model směsice gausovských rozloženı́ (Gaussian Mixture Model) lze interpretovat jako model s takz-
+    vanou skrytou (latentnı́) náhodnou proměnnou. Co tato skrytá proměnná reprezentuje? Jakou hraje
+    roli při vyhodnocenı́ hustoty pravděpodobnosti (likelihood) p(x)?
+
+
+
+
+18. Pro řešenı́ klasifikačnı́ úlohy chceme použı́t generativnı́ klasifikátor, kde jsou rozloženı́ jednotlivých
+    třı́d modelována pomocı́ směsice gaussovských rozloženı́ (GMM). Bohužel nemáme mnoho trénovacı́ch
+    dat pro odhad GMM parametrů. Navrhněte co dělat, aby výsledný klasifikátor dobře generalizoval
+    pro nová data.
+
+
+
+
+19. Co to je extrakce přı́znaků (feature extraction)? K čemu sloužı́? Jaké vlastnosti by měly přı́znaky
+    mı́t?
+20. Mějme vı́cerozměrná data x generovaná ze standardnı́ho normálnı́ho rozloženı́ N (x; 0, I). Nová data
+    y = Ax zı́skáme lineárnı́ transformacı́ původnı́ch dat. Jak se změnı́ rozloženı́ po transformaci dat
+    pokud bude mı́t transformačnı́ matice A ortonormálnı́ báze (tedy AAT = AT A = I)? Jaké konkrétnı́
+    hodnoty budou mı́t vlastnı́ čı́sla kovariančnı́ matice Σy transformovaných dat?
+
+
+
+
+21. Mějme data vygenerovaná z vı́cerozměrného gaussovského rozloženı́ x ∼ N (µ, Σ). Existuje taková
+    transformace y = Ax+b, která transformuje data do standardnı́ho normalnı́ho rozloženi y ∼ N (0, I)
+    (tedy nová střednı́ hodnota je nulový vektor 0 a kovariančnı́ matice je jednotková matice I). Jak
+    zı́skáme matici A a vektor b takovéto transformace.
+    Pomucka: Uvědomte si kroky, které je nutné udělat: 1) posunout data tak aby měla nulovou střednı́
+    hodnotu, 2) rotovat data tak, aby měla diagonálnı́ kovariančnı́ matici, 3) podělit jednotlivé dimenze
+    stadardnı́ odchylkou, tak aby byly variance ve všech dimenzı́ch jednotkové. Pozor na pořadı́ těchto
+    kroků a na pořadı́ operacı́ v transformačnı́m vzorečku.
+22. Mějme dvě jednorozměrné náhodné veličiny x a y s gaussovskými rozloženı́mi N (x; µx , σx2 ) a N (y; µy , σy2 ).
+    Jaké bude společné (dvourozměrné) rozloženı́ pravděpodobnosti p(x, y) za předpokladu, že jsou obě
+    náhodné veličiny na sobě statisticky nezávislé? Uveďte přesnou podobu tohoto rozloženı́ a parametrů,
+    které toto rozloženı́ popisujı́.
+
+
+
+
+23. Mějme kovariančnı́ matici odhadnutou na určité množině výcerozměrných trénovacı́ch dat. Vlastnı́
+    čı́sla této kovariančnı́ matice odpovı́dajı́ jistým variancı́m v těchto trénovacı́ch datech. O jaké variance
+    se jedná?
+
+
+
+
+24. Co to je “analýza hlavnı́ch komponent (Principal Component Analysis)”? Kdy, jak, a k čemu se
+    použı́vá?
+25. Jaký je rozdı́l mezi analýzou hlavnı́ch komponent (PCA) a lineárnı́ diskriminačnı́ analýzou (LDA)?
+    K čemu tyto techniky sloužı́? V jakých přı́padech kterou techniku použijete?
+
+
+
+
+26. Mějme natrénovaný pravděpodobnostnı́ lineárnı́ klasifikátor pro dvě třı́dy (např. pomocı́ logistické
+    regrese). Jakou podobu budou mı́t parametry tohoto klasifikátoru? Jak na základě těchto parametrů
+    rozhodneme do které třı́dy patřı́ nový přı́chozı́ vzor x? Jak spočı́táme posteriornı́ pravděpodobnost,
+    že tento vzor patřı́ do jedné či druhé třı́dy?
+
+
+
+
+27. Mějme lineárnı́ klasifikátor pro dvě třı́dy popsaný rovnicı́ y(x) = wT x + w0 . Popište, jak se změnı́
+    rozhodovacı́ hranice (hyperrovina oddělujı́cı́ třı́dy), když se zmenšı́ absolutnı́ hodnota parametru w0 .
+28. Mějme lineárnı́ klasifikátor pro dvourozměrná data x = [x1 , x2 ]T a dvě třı́dy popsaný rovnicı́
+    y(x) = wT x+w0 . Zakreslete do os, kudy vede hranice mezi třı́dami pro wT = [6.0, 8.0] a w0 = −48.0.
+
+
+
+
+29. Popište, jaké úlohy je schopen řešit Perceptron. V jakých přı́padech trénovánı́ selže? V jakých
+    přı́padech je naopak trénovacı́ algoritmus úspěšný a co je v takovém přı́padě jeho řešenı́? Proč ale
+    můze být toto řešenı́ suboptimálnı́ (ve srovnánı́ např. s SVM).
+30. Logistická regrese i lineárnı́ gaussovský klasifikátor (kde je rozloženı́ vzorů jednotlivých třı́d mode-
+    lováno gaussovkami se sdı́lenou kovariančnı́ maticı́) jsou oba lineárnı́ klasifikátory. Uvažujme pouze
+    klasifikačnı́ problém se dvěma třı́dami C1 a C2 . Pro oba klasifikátory vyhodnotı́me posteriornı́
+    pravděpodobnost P (C1 |x) = σ(wT x + w0 ), kde x je nějaký testovacı́ vzor. Pro logistickou regrese i
+    lineárnı́ generativnı́ klasifikátor je tedy vyhodnocenı́ klasifikátoru naprosto shodné. V čem a jak se
+    tedy tyto klasifikátory lišı́? Jaké jsou jejich výhody a nevýhody?
+
+
+
+
+31. Vysvětlete k čemu obecně sloužı́ a na jakém principu pracuje Newton-Raphson optimalizačnı́ metoda
+    (kterou jsme využı́vali pro trénovánı́ logistické regrese)? V čem se tato metoda lišı́ od metody
+    největšı́ho spádu (gradient descent) a jaké má výhody?
+32. Pro trénovánı́ logistické regrese i klasifikačnı́ neuronové sı́ıtě použı́váme stejnou objektivnı́ (chybovou)
+    funkci, kterou se snažı́me optimalizovat. O kterou objektivnı́ funkci se jedná? Napište tuto objektivnı́
+    funkci, vysvětlete jednotlivé symboly a řeknete co tato funkce vyjadřuje.
+
+
+
+
+33. Vysvětlete k čemu sloužı́ a na jakém principu pracuje metoda největšı́ho spádu (gradient descent)?
+    Jaký vztah má tato metoda k algoritmu zpětného šı́řenı́ chyby (error back-propagation), který se
+    použı́vá k trénovánı́ neuronových sı́tı́.
+
+
+
+
+34. Mějme binárnı́ klasifikačnı́ problém s třı́dami A a B. Neuronová sı́ť s topologiı́, vahami (weights)
+    a prahy (biases) uvedenými na obrázku predikuje pravděpodobnost třı́dy A pro vstupnı́ vektor
+    x. Všechny aktivačnı́ funkce jsou logistické sigmoidy σ(a) = 1/(1 + exp(−a)). Která třı́da bude
+    podle této neuronové sı́tě pravděpodobnějšı́ pro vstup x = [x1 , x2 ] = [2.0, 1.0]? Ukažte proč.
+35. Při trénovánı́ neuronové sı́tě můžeme použı́t různé strategie úpravy vah: ”standardnı́” metoda gra-
+    dientnı́ho sestupu (batch training), mini-batch trénovánı́, Stochastic Gradient descent. Jak se tyto
+    přı́stupy lišı́?
+
+
+
+
+36. Kčemu sloužı́ rekurentnı́ neuronové sı́tě a jak se lišı́ od dopředných neuronových sı́tı́?
+
+
+
+
+37. Jakou operaci provede pooling vrstva v konvolučnı́ sı́ti?
+38. Jaké jsou možnosti použitı́ lineárnı́ch klasifikátorů pro řešenı́ nelineárnı́ch klasifikačnı́ch problémů?
+
+
+
+
+39. Nakreslete nějaká dvourozměrná data pro dvě lineárně separovatelné třı́dy a ukažte jaké řešenı́pro
+    klasifikaci takových dat nabı́dne lineárnı́ SVM klasifikátor. Vysvětlete jak se k tomuto řešenı́ dojde.
+
+
+
+
+40. Co to je jádrová funkce (kernel function) u SVM klasifikátoru? Co jsou vstupy a co je výstupem
+    takové funkce? K čemu jádrová funkce u SVM klasifikátoru sloužı́? Jaký problém nám pomáhá řešit
+    a jak?
+41. Mějme jádrovou funkci (kernel function) K(x, y) = (1 + xy)2 definovanou pro skalárnı́ vstupy x a y.
+    Tato funkce se dá interpretovat jako 1) nelineárnı́ expanze skalárů x a y do třı́rozměrných vektorů a
+    2) výpočet skalárnı́ho součinu mezi těmito vektory. O jakou konkrétnı́ nelinearnı́ expanzi se jedná?
+    Odvoďte!
+
+
+
+
+42. Vysvětlete jaké řešenı́ hledá SVM klasifikátor, který řešı́ problémy s překrývajı́cı́mi se třı́dami pomocı́
+    tzv. ”slack variables”.
+
+
+
+
+43. Co jsou to skryté markovovy modely (Hidden Markov Models)? Co modelujı́ či reprezentujı́? Jakou
+    podobu majı́ vzory, které pomocı́ těchto modelů můžeme klasifikovat (nebo z nich náhodně gen-
+    erovat)?
+44. Skrytý markovův model (Hidden Markov Model) na obrázku má tři stavy {1, 2, 3}, přechodové
+    pravděpodobnosti {a11 , a12 , a22 , a23 , a33 , a3exit } a funkce {b1 (x), b2 (x), b3 (x)} pro výpočet hodnot hus-
+    toty pravděpodobnosti pro jednotlivé stavy pro určitý rámec x. Mějme sekvenci čtyř rámců (přı́znakových
+    vektorů) X = [x1 , x2 , x3 , x4 ]. Pomocı́ zmı́něných symbolů napište jak se spočı́tá podmı́něná věrohodnost
+    (pravděpodobnost) p(X|S) pro sekvenci stavů S = [1, 2, 3, 3]. Jak se dále spočı́ta pravděpodobnost
+    této sekvence stavů P (S).
+45. Pro skrytý markovův model z předchozı́ho přı́kladu uveďte jak se vyhodnotı́ věrohodnost p(X).
+
+
+
+
+46. Skrytý markovův model (Hidden Markov Model) na obrázku má tři stavy {1, 2, 3}, přechodové
+    pravděpodobnosti {a11 , a12 , a22 , a23 , a33 , a3exit } a funkce {b1 (x), b2 (x), b3 (x)} pro výpočet hodnot hus-
+    toty pravděpodobnosti pro jednotlivé stavy pro určitý rámec x. Mějme sekvenci čtyř rámců (přı́znakových
+    vektorů) X = [x1 , x2 , x3 , x4 ]. Pomocı́ zmı́něných symbolů napište jak se pro tento model spočı́tá
+    věrohodnost (pravděpodobnost) této sekvence přı́znaků p(X). Mějte na paměti, že pro vyhodnocenı́
+    modelu je třeba brát v úvahu všechny možné skryté sekvence stavů.
+47. Skryté markovovy modely jsou generativnı́m modelem popisujı́cı́m rozloženı́ hustoty pravděpodobnosti
+    vzorů, kde každý vzor je sekvence přı́znakových vektorů. Jako každý generativnı́ model nám tedy
+   umožňujı́ náhodně generovat vzory z rozloženı́ které reprezentujı́. Popište jak byste náhodně vygen-
+   erovali jeden vzor ze skrytého markovova modelu z předchozı́ho přı́kladu.
+
+
+
+
+48. Co je ve skrytých makrovových modelech ”skryté”, tedy co nelze přı́mo vypozorovat ze vstupnı́
+    (viděné) sekvence přı́znaků?
+

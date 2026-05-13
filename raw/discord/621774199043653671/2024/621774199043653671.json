@@ -1,0 +1,1075 @@
+{
+  "guild": {
+    "id": "461541385204400138",
+    "name": "VUT FIT",
+    "iconUrl": "https://cdn.discordapp.com/icons/461541385204400138/a_f3b27532e370b3269df978471709558f.gif?size=512"
+  },
+  "channel": {
+    "id": "621774199043653671",
+    "type": "GuildTextChat",
+    "categoryId": "1203724153740595270",
+    "category": "letni magistersky semestr 2",
+    "name": "sur-public",
+    "topic": "Strojové učení a rozpoznávání"
+  },
+  "dateRange": {
+    "after": "2024-04-15T00:00:00+00:00",
+    "before": "2024-07-01T00:00:00+00:00"
+  },
+  "exportedAt": "2026-05-11T08:49:43.3075898+00:00",
+  "messages": [
+    {
+      "id": "1238027544234819636",
+      "type": "Reply",
+      "timestamp": "2024-05-09T07:19:27.985+00:00",
+      "timestampEdited": null,
+      "callEndedTimestamp": null,
+      "isPinned": false,
+      "content": "Máte pravdu, děkuji \uD83E\uDEE1. Taky jsem na to potom koukal, že klasifikátory ze SURu jsou asi silnější než to co nabízí sklearn \uD83D\uDE01",
+      "author": {
+        "id": "395841860888821760",
+        "name": "mira_007",
+        "discriminator": "0000",
+        "nickname": "Mira",
+        "color": "#00AAFF",
+        "isBot": false,
+        "roles": [
+          {
+            "id": "1152643732731084820",
+            "name": "2MIT+",
+            "color": "#00AAFF",
+            "position": 106
+          },
+          {
+            "id": "751858151997046966",
+            "name": "Survivor",
+            "color": "#1ABC9C",
+            "position": 103
+          },
+          {
+            "id": "591349196267716608",
+            "name": "Verify",
+            "color": null,
+            "position": 93
+          },
+          {
+            "id": "1152633105753067690",
+            "name": "křenočákoš",
+            "color": null,
+            "position": 48
+          }
+        ],
+        "avatarUrl": "https://cdn.discordapp.com/avatars/395841860888821760/2966cddd1d438b07185e1d5a84936bf2.png?size=512"
+      },
+      "attachments": [],
+      "embeds": [],
+      "stickers": [],
+      "reactions": [
+        {
+          "emoji": {
+            "id": "827833315666558996",
+            "name": "peepolove",
+            "code": "peepolove",
+            "isAnimated": false,
+            "imageUrl": "https://cdn.discordapp.com/emojis/827833315666558996.png"
+          },
+          "count": 1,
+          "users": [
+            {
+              "id": "642014704822255645",
+              "name": ".dedobed",
+              "discriminator": "0000",
+              "nickname": "dedObed",
+              "color": "#AD1457",
+              "isBot": false,
+              "avatarUrl": "https://cdn.discordapp.com/embed/avatars/0.png"
+            }
+          ]
+        }
+      ],
+      "mentions": [
+        {
+          "id": "642014704822255645",
+          "name": ".dedobed",
+          "discriminator": "0000",
+          "nickname": "dedObed",
+          "color": "#AD1457",
+          "isBot": false,
+          "roles": [
+            {
+              "id": "1020697715857948733",
+              "name": "Vyucujici/Zamestnanec",
+              "color": "#AD1457",
+              "position": 111
+            },
+            {
+              "id": "591349196267716608",
+              "name": "Verify",
+              "color": null,
+              "position": 93
+            },
+            {
+              "id": "589911603500154885",
+              "name": "FilmoveVecery",
+              "color": null,
+              "position": 63
+            },
+            {
+              "id": "751876745216655467",
+              "name": "Skolni Info",
+              "color": null,
+              "position": 60
+            }
+          ],
+          "avatarUrl": "https://cdn.discordapp.com/embed/avatars/0.png"
+        }
+      ],
+      "reference": {
+        "type": "Default",
+        "messageId": "1224438865247604816",
+        "channelId": "621774199043653671",
+        "guildId": "461541385204400138"
+      },
+      "inlineEmojis": [
+        {
+          "id": "",
+          "name": "\uD83D\uDE01",
+          "code": "grin",
+          "isAnimated": false,
+          "imageUrl": "https://cdn.jsdelivr.net/gh/twitter/twemoji@latest/assets/svg/1f601.svg"
+        }
+      ]
+    },
+    {
+      "id": "1242926418749292665",
+      "type": "Default",
+      "timestamp": "2024-05-22T19:45:50.686+00:00",
+      "timestampEdited": "2024-05-22T19:54:34.637+00:00",
+      "callEndedTimestamp": null,
+      "isPinned": false,
+      "content": "[Použítí lineárních klasifikátorů]\nZdravíčko, mám nerdský dotaz...\nV přednášce o Lineárních klasifikátorech je za prvé Lineární logistická regrese, kde hledám ideální parametry pomocí Cross Entropie a Gradient Descentu. \nZa druhé tam je Gaussovský Lineární klasifikátor (např. pro víc tříd), kde je v přednášce zmíněn odhad parametrů \\mu_k a \\sigma přímo z dat (viz screen). **Chápu správně, že nejlepší parametry Gaussovského lineárního klasifikátoru se z inicializovaných hledají nějakým iterativním přístupem, např. Expectation Maximization jako u GMM?**\n(na slajdu není zmíněno, tak přemýšlím, jestli se parametry vůbec hledají, nebo se běžně vezme prostě první odhad z dat?)\nsource: [SUR/public/prednasky/04_lin_klasifikatory/](https://www.fit.vutbr.cz/study/courses/SUR/public/prednasky/04_lin_klasifikatory/)",
+      "author": {
+        "id": "624380498290016276",
+        "name": "vojtus1",
+        "discriminator": "0000",
+        "nickname": "Vojtus1",
+        "color": "#A4B4BE",
+        "isBot": false,
+        "roles": [
+          {
+            "id": "591498402769141817",
+            "name": "ExStudent",
+            "color": "#A4B4BE",
+            "position": 95
+          },
+          {
+            "id": "591349196267716608",
+            "name": "Verify",
+            "color": null,
+            "position": 93
+          },
+          {
+            "id": "751876745216655467",
+            "name": "Skolni Info",
+            "color": null,
+            "position": 60
+          },
+          {
+            "id": "1152650784740212807",
+            "name": "divocakos",
+            "color": null,
+            "position": 49
+          }
+        ],
+        "avatarUrl": "https://cdn.discordapp.com/avatars/624380498290016276/88c2150fb72bf52ee05c4d4e4fade3a3.png?size=512"
+      },
+      "attachments": [
+        {
+          "id": "1242926418468536361",
+          "url": "https://cdn.discordapp.com/attachments/621774199043653671/1242926418468536361/image.png?ex=6a02daae&is=6a01892e&hm=1958930a0578e97cbf55d822e52311178e103e58f6483a6126b1a9c1f88b46ec&",
+          "fileName": "image.png",
+          "fileSizeBytes": 178473
+        }
+      ],
+      "embeds": [],
+      "stickers": [],
+      "reactions": [
+        {
+          "emoji": {
+            "id": "",
+            "name": "\uD83E\uDD13",
+            "code": "nerd",
+            "isAnimated": false,
+            "imageUrl": "https://cdn.jsdelivr.net/gh/twitter/twemoji@latest/assets/svg/1f913.svg"
+          },
+          "count": 1,
+          "users": [
+            {
+              "id": "289125304902090754",
+              "name": "fadofado",
+              "discriminator": "0000",
+              "nickname": "Fado",
+              "color": null,
+              "isBot": false,
+              "avatarUrl": "https://cdn.discordapp.com/avatars/289125304902090754/8cb7aa5b5c1dbf212ba4eab13e640ff8.png?size=512"
+            }
+          ]
+        }
+      ],
+      "mentions": [],
+      "inlineEmojis": []
+    },
+    {
+      "id": "1242928426109767681",
+      "type": "Default",
+      "timestamp": "2024-05-22T19:53:49.278+00:00",
+      "timestampEdited": null,
+      "callEndedTimestamp": null,
+      "isPinned": false,
+      "content": "**Nechápeš.**",
+      "author": {
+        "id": "642014704822255645",
+        "name": ".dedobed",
+        "discriminator": "0000",
+        "nickname": "dedObed",
+        "color": "#AD1457",
+        "isBot": false,
+        "roles": [
+          {
+            "id": "1020697715857948733",
+            "name": "Vyucujici/Zamestnanec",
+            "color": "#AD1457",
+            "position": 111
+          },
+          {
+            "id": "591349196267716608",
+            "name": "Verify",
+            "color": null,
+            "position": 93
+          },
+          {
+            "id": "589911603500154885",
+            "name": "FilmoveVecery",
+            "color": null,
+            "position": 63
+          },
+          {
+            "id": "751876745216655467",
+            "name": "Skolni Info",
+            "color": null,
+            "position": 60
+          }
+        ],
+        "avatarUrl": "https://cdn.discordapp.com/embed/avatars/0.png"
+      },
+      "attachments": [],
+      "embeds": [],
+      "stickers": [],
+      "reactions": [
+        {
+          "emoji": {
+            "id": "485550402692055101",
+            "name": "HAhaaVUT",
+            "code": "HAhaaVUT",
+            "isAnimated": false,
+            "imageUrl": "https://cdn.discordapp.com/emojis/485550402692055101.png"
+          },
+          "count": 1,
+          "users": [
+            {
+              "id": "624380498290016276",
+              "name": "vojtus1",
+              "discriminator": "0000",
+              "nickname": "Vojtus1",
+              "color": "#A4B4BE",
+              "isBot": false,
+              "avatarUrl": "https://cdn.discordapp.com/avatars/624380498290016276/88c2150fb72bf52ee05c4d4e4fade3a3.png?size=512"
+            }
+          ]
+        },
+        {
+          "emoji": {
+            "id": "827833315922542593",
+            "name": "OMEGALUL",
+            "code": "OMEGALUL",
+            "isAnimated": false,
+            "imageUrl": "https://cdn.discordapp.com/emojis/827833315922542593.png"
+          },
+          "count": 6,
+          "users": [
+            {
+              "id": "162610974891835392",
+              "name": "simon55655",
+              "discriminator": "0000",
+              "nickname": "Simon55655",
+              "color": null,
+              "isBot": false,
+              "avatarUrl": "https://cdn.discordapp.com/avatars/162610974891835392/7b0d4cb55319c24fff4130c004aa15f2.png?size=512"
+            },
+            {
+              "id": "289125304902090754",
+              "name": "fadofado",
+              "discriminator": "0000",
+              "nickname": "Fado",
+              "color": null,
+              "isBot": false,
+              "avatarUrl": "https://cdn.discordapp.com/avatars/289125304902090754/8cb7aa5b5c1dbf212ba4eab13e640ff8.png?size=512"
+            },
+            {
+              "id": "382251978027302912",
+              "name": "bc.derkuznikov",
+              "discriminator": "0000",
+              "nickname": "Ing. Dér Kuzníkov",
+              "color": null,
+              "isBot": false,
+              "avatarUrl": "https://cdn.discordapp.com/avatars/382251978027302912/ce393113042fdcea33827188a2b03a27.png?size=512"
+            },
+            {
+              "id": "414845106588352532",
+              "name": "toxicenzo",
+              "discriminator": "0000",
+              "nickname": "Toxičenzo",
+              "color": null,
+              "isBot": false,
+              "avatarUrl": "https://cdn.discordapp.com/avatars/414845106588352532/7014dd2529a2abc2f294f47937d28ff1.png?size=512"
+            },
+            {
+              "id": "452373868326420481",
+              "name": "swagger123",
+              "discriminator": "0000",
+              "nickname": "swagger123",
+              "color": null,
+              "isBot": false,
+              "avatarUrl": "https://cdn.discordapp.com/avatars/452373868326420481/4af166d3deed772a46b5102c09a10891.png?size=512"
+            },
+            {
+              "id": "501741133676937220",
+              "name": "ven.ca",
+              "discriminator": "0000",
+              "nickname": "Venca",
+              "color": null,
+              "isBot": false,
+              "avatarUrl": "https://cdn.discordapp.com/avatars/501741133676937220/dbb27812e5c7c125cd83b9f03dfb97c4.png?size=512"
+            }
+          ]
+        }
+      ],
+      "mentions": [],
+      "inlineEmojis": []
+    },
+    {
+      "id": "1242929037337297046",
+      "type": "Default",
+      "timestamp": "2024-05-22T19:56:15.006+00:00",
+      "timestampEdited": null,
+      "callEndedTimestamp": null,
+      "isPinned": false,
+      "content": "Proto se ptám, můžu poprosit o rozvedení odpovědi? :RNGesus:",
+      "author": {
+        "id": "624380498290016276",
+        "name": "vojtus1",
+        "discriminator": "0000",
+        "nickname": "Vojtus1",
+        "color": "#A4B4BE",
+        "isBot": false,
+        "roles": [
+          {
+            "id": "591498402769141817",
+            "name": "ExStudent",
+            "color": "#A4B4BE",
+            "position": 95
+          },
+          {
+            "id": "591349196267716608",
+            "name": "Verify",
+            "color": null,
+            "position": 93
+          },
+          {
+            "id": "751876745216655467",
+            "name": "Skolni Info",
+            "color": null,
+            "position": 60
+          },
+          {
+            "id": "1152650784740212807",
+            "name": "divocakos",
+            "color": null,
+            "position": 49
+          }
+        ],
+        "avatarUrl": "https://cdn.discordapp.com/avatars/624380498290016276/88c2150fb72bf52ee05c4d4e4fade3a3.png?size=512"
+      },
+      "attachments": [],
+      "embeds": [],
+      "stickers": [],
+      "reactions": [],
+      "mentions": [],
+      "inlineEmojis": [
+        {
+          "id": "493153718854877195",
+          "name": "RNGesus",
+          "code": "RNGesus",
+          "isAnimated": false,
+          "imageUrl": "https://cdn.discordapp.com/emojis/493153718854877195.png"
+        }
+      ]
+    },
+    {
+      "id": "1242929609427914973",
+      "type": "Default",
+      "timestamp": "2024-05-22T19:58:31.403+00:00",
+      "timestampEdited": null,
+      "callEndedTimestamp": null,
+      "isPinned": false,
+      "content": "Optimalni parametry GLC maji closed-form reseni, ktere je prave na slajdu (diky za vlozeni :hyperscap: ), netreba nic iterovat. Specificky, netřeba žádný EM, neboť v modelu nejsou žádné skryté proměnné (srov. GMM a přiřazení dat do komponent).",
+      "author": {
+        "id": "642014704822255645",
+        "name": ".dedobed",
+        "discriminator": "0000",
+        "nickname": "dedObed",
+        "color": "#AD1457",
+        "isBot": false,
+        "roles": [
+          {
+            "id": "1020697715857948733",
+            "name": "Vyucujici/Zamestnanec",
+            "color": "#AD1457",
+            "position": 111
+          },
+          {
+            "id": "591349196267716608",
+            "name": "Verify",
+            "color": null,
+            "position": 93
+          },
+          {
+            "id": "589911603500154885",
+            "name": "FilmoveVecery",
+            "color": null,
+            "position": 63
+          },
+          {
+            "id": "751876745216655467",
+            "name": "Skolni Info",
+            "color": null,
+            "position": 60
+          }
+        ],
+        "avatarUrl": "https://cdn.discordapp.com/embed/avatars/0.png"
+      },
+      "attachments": [],
+      "embeds": [],
+      "stickers": [],
+      "reactions": [],
+      "mentions": [],
+      "inlineEmojis": [
+        {
+          "id": "544994076651552768",
+          "name": "hyperscap",
+          "code": "hyperscap",
+          "isAnimated": false,
+          "imageUrl": "https://cdn.discordapp.com/emojis/544994076651552768.png"
+        }
+      ]
+    },
+    {
+      "id": "1242930199272620173",
+      "type": "Default",
+      "timestamp": "2024-05-22T20:00:52.033+00:00",
+      "timestampEdited": null,
+      "callEndedTimestamp": null,
+      "isPinned": false,
+      "content": "Dál bych rád, když už je tak hezky post-zkouškově (aspoň ve Tvém případě doufám :kek: ) vytaženo, tak bych rád zdůraznil, že GLC i LLR hledají parametry, které *maximalizují pravděpodobnost dat* -- akorát jednou p(x) (za podmínky sdílené kovariance) a podruhé p(t|x).",
+      "author": {
+        "id": "642014704822255645",
+        "name": ".dedobed",
+        "discriminator": "0000",
+        "nickname": "dedObed",
+        "color": "#AD1457",
+        "isBot": false,
+        "roles": [
+          {
+            "id": "1020697715857948733",
+            "name": "Vyucujici/Zamestnanec",
+            "color": "#AD1457",
+            "position": 111
+          },
+          {
+            "id": "591349196267716608",
+            "name": "Verify",
+            "color": null,
+            "position": 93
+          },
+          {
+            "id": "589911603500154885",
+            "name": "FilmoveVecery",
+            "color": null,
+            "position": 63
+          },
+          {
+            "id": "751876745216655467",
+            "name": "Skolni Info",
+            "color": null,
+            "position": 60
+          }
+        ],
+        "avatarUrl": "https://cdn.discordapp.com/embed/avatars/0.png"
+      },
+      "attachments": [],
+      "embeds": [],
+      "stickers": [],
+      "reactions": [],
+      "mentions": [],
+      "inlineEmojis": [
+        {
+          "id": "499119654053347329",
+          "name": "kek",
+          "code": "kek",
+          "isAnimated": false,
+          "imageUrl": "https://cdn.discordapp.com/emojis/499119654053347329.png"
+        }
+      ]
+    },
+    {
+      "id": "1242930800459251794",
+      "type": "Reply",
+      "timestamp": "2024-05-22T20:03:15.367+00:00",
+      "timestampEdited": null,
+      "callEndedTimestamp": null,
+      "isPinned": false,
+      "content": "Aha, tam už není co lépe odhadovat, chápu...\nDíky za přiblížení. :peepolove:",
+      "author": {
+        "id": "624380498290016276",
+        "name": "vojtus1",
+        "discriminator": "0000",
+        "nickname": "Vojtus1",
+        "color": "#A4B4BE",
+        "isBot": false,
+        "roles": [
+          {
+            "id": "591498402769141817",
+            "name": "ExStudent",
+            "color": "#A4B4BE",
+            "position": 95
+          },
+          {
+            "id": "591349196267716608",
+            "name": "Verify",
+            "color": null,
+            "position": 93
+          },
+          {
+            "id": "751876745216655467",
+            "name": "Skolni Info",
+            "color": null,
+            "position": 60
+          },
+          {
+            "id": "1152650784740212807",
+            "name": "divocakos",
+            "color": null,
+            "position": 49
+          }
+        ],
+        "avatarUrl": "https://cdn.discordapp.com/avatars/624380498290016276/88c2150fb72bf52ee05c4d4e4fade3a3.png?size=512"
+      },
+      "attachments": [],
+      "embeds": [],
+      "stickers": [],
+      "reactions": [
+        {
+          "emoji": {
+            "id": "",
+            "name": "\uD83D\uDCAF",
+            "code": "100",
+            "isAnimated": false,
+            "imageUrl": "https://cdn.jsdelivr.net/gh/twitter/twemoji@latest/assets/svg/1f4af.svg"
+          },
+          "count": 1,
+          "users": [
+            {
+              "id": "642014704822255645",
+              "name": ".dedobed",
+              "discriminator": "0000",
+              "nickname": "dedObed",
+              "color": "#AD1457",
+              "isBot": false,
+              "avatarUrl": "https://cdn.discordapp.com/embed/avatars/0.png"
+            }
+          ]
+        }
+      ],
+      "mentions": [
+        {
+          "id": "642014704822255645",
+          "name": ".dedobed",
+          "discriminator": "0000",
+          "nickname": "dedObed",
+          "color": "#AD1457",
+          "isBot": false,
+          "roles": [
+            {
+              "id": "1020697715857948733",
+              "name": "Vyucujici/Zamestnanec",
+              "color": "#AD1457",
+              "position": 111
+            },
+            {
+              "id": "591349196267716608",
+              "name": "Verify",
+              "color": null,
+              "position": 93
+            },
+            {
+              "id": "589911603500154885",
+              "name": "FilmoveVecery",
+              "color": null,
+              "position": 63
+            },
+            {
+              "id": "751876745216655467",
+              "name": "Skolni Info",
+              "color": null,
+              "position": 60
+            }
+          ],
+          "avatarUrl": "https://cdn.discordapp.com/embed/avatars/0.png"
+        }
+      ],
+      "reference": {
+        "type": "Default",
+        "messageId": "1242929609427914973",
+        "channelId": "621774199043653671",
+        "guildId": "461541385204400138"
+      },
+      "inlineEmojis": [
+        {
+          "id": "827833315666558996",
+          "name": "peepolove",
+          "code": "peepolove",
+          "isAnimated": false,
+          "imageUrl": "https://cdn.discordapp.com/emojis/827833315666558996.png"
+        }
+      ]
+    },
+    {
+      "id": "1242930897414656134",
+      "type": "Default",
+      "timestamp": "2024-05-22T20:03:38.483+00:00",
+      "timestampEdited": null,
+      "callEndedTimestamp": null,
+      "isPinned": false,
+      "content": "Sloužím lidu :KKomrade:",
+      "author": {
+        "id": "642014704822255645",
+        "name": ".dedobed",
+        "discriminator": "0000",
+        "nickname": "dedObed",
+        "color": "#AD1457",
+        "isBot": false,
+        "roles": [
+          {
+            "id": "1020697715857948733",
+            "name": "Vyucujici/Zamestnanec",
+            "color": "#AD1457",
+            "position": 111
+          },
+          {
+            "id": "591349196267716608",
+            "name": "Verify",
+            "color": null,
+            "position": 93
+          },
+          {
+            "id": "589911603500154885",
+            "name": "FilmoveVecery",
+            "color": null,
+            "position": 63
+          },
+          {
+            "id": "751876745216655467",
+            "name": "Skolni Info",
+            "color": null,
+            "position": 60
+          }
+        ],
+        "avatarUrl": "https://cdn.discordapp.com/embed/avatars/0.png"
+      },
+      "attachments": [],
+      "embeds": [],
+      "stickers": [],
+      "reactions": [
+        {
+          "emoji": {
+            "id": "827833315666558996",
+            "name": "peepolove",
+            "code": "peepolove",
+            "isAnimated": false,
+            "imageUrl": "https://cdn.discordapp.com/emojis/827833315666558996.png"
+          },
+          "count": 2,
+          "users": [
+            {
+              "id": "624380498290016276",
+              "name": "vojtus1",
+              "discriminator": "0000",
+              "nickname": "Vojtus1",
+              "color": "#A4B4BE",
+              "isBot": false,
+              "avatarUrl": "https://cdn.discordapp.com/avatars/624380498290016276/88c2150fb72bf52ee05c4d4e4fade3a3.png?size=512"
+            },
+            {
+              "id": "699304325222236171",
+              "name": "ozikazina",
+              "discriminator": "0000",
+              "nickname": "ozikazina",
+              "color": null,
+              "isBot": false,
+              "avatarUrl": "https://cdn.discordapp.com/avatars/699304325222236171/381f54ef507eef1b777a98ad17463627.png?size=512"
+            }
+          ]
+        }
+      ],
+      "mentions": [],
+      "inlineEmojis": [
+        {
+          "id": "484470873001164817",
+          "name": "KKomrade",
+          "code": "KKomrade",
+          "isAnimated": false,
+          "imageUrl": "https://cdn.discordapp.com/emojis/484470873001164817.png"
+        }
+      ]
+    },
+    {
+      "id": "1242931119574224907",
+      "type": "Reply",
+      "timestamp": "2024-05-22T20:04:31.45+00:00",
+      "timestampEdited": null,
+      "callEndedTimestamp": null,
+      "isPinned": false,
+      "content": "Napsal jsem něco, co by tomuhle odporovalo, nebo píšeš jen pro úplnost? \uD83E\uDD14",
+      "author": {
+        "id": "624380498290016276",
+        "name": "vojtus1",
+        "discriminator": "0000",
+        "nickname": "Vojtus1",
+        "color": "#A4B4BE",
+        "isBot": false,
+        "roles": [
+          {
+            "id": "591498402769141817",
+            "name": "ExStudent",
+            "color": "#A4B4BE",
+            "position": 95
+          },
+          {
+            "id": "591349196267716608",
+            "name": "Verify",
+            "color": null,
+            "position": 93
+          },
+          {
+            "id": "751876745216655467",
+            "name": "Skolni Info",
+            "color": null,
+            "position": 60
+          },
+          {
+            "id": "1152650784740212807",
+            "name": "divocakos",
+            "color": null,
+            "position": 49
+          }
+        ],
+        "avatarUrl": "https://cdn.discordapp.com/avatars/624380498290016276/88c2150fb72bf52ee05c4d4e4fade3a3.png?size=512"
+      },
+      "attachments": [],
+      "embeds": [],
+      "stickers": [],
+      "reactions": [],
+      "mentions": [
+        {
+          "id": "642014704822255645",
+          "name": ".dedobed",
+          "discriminator": "0000",
+          "nickname": "dedObed",
+          "color": "#AD1457",
+          "isBot": false,
+          "roles": [
+            {
+              "id": "1020697715857948733",
+              "name": "Vyucujici/Zamestnanec",
+              "color": "#AD1457",
+              "position": 111
+            },
+            {
+              "id": "591349196267716608",
+              "name": "Verify",
+              "color": null,
+              "position": 93
+            },
+            {
+              "id": "589911603500154885",
+              "name": "FilmoveVecery",
+              "color": null,
+              "position": 63
+            },
+            {
+              "id": "751876745216655467",
+              "name": "Skolni Info",
+              "color": null,
+              "position": 60
+            }
+          ],
+          "avatarUrl": "https://cdn.discordapp.com/embed/avatars/0.png"
+        }
+      ],
+      "reference": {
+        "type": "Default",
+        "messageId": "1242930199272620173",
+        "channelId": "621774199043653671",
+        "guildId": "461541385204400138"
+      },
+      "inlineEmojis": [
+        {
+          "id": "",
+          "name": "\uD83E\uDD14",
+          "code": "thinking",
+          "isAnimated": false,
+          "imageUrl": "https://cdn.jsdelivr.net/gh/twitter/twemoji@latest/assets/svg/1f914.svg"
+        }
+      ]
+    },
+    {
+      "id": "1242931539621187595",
+      "type": "Reply",
+      "timestamp": "2024-05-22T20:06:11.597+00:00",
+      "timestampEdited": null,
+      "callEndedTimestamp": null,
+      "isPinned": false,
+      "content": "Nenapsal. Jen mi přišlo, že o těch dvou modelech píšeš víc odděleně, než jak byste si to ze SURu měli odnést. (Že se dá GLC přeformulovat na LLR už nepíšu, to snad nikomu uniknout nemohlo :kappaPeek: )",
+      "author": {
+        "id": "642014704822255645",
+        "name": ".dedobed",
+        "discriminator": "0000",
+        "nickname": "dedObed",
+        "color": "#AD1457",
+        "isBot": false,
+        "roles": [
+          {
+            "id": "1020697715857948733",
+            "name": "Vyucujici/Zamestnanec",
+            "color": "#AD1457",
+            "position": 111
+          },
+          {
+            "id": "591349196267716608",
+            "name": "Verify",
+            "color": null,
+            "position": 93
+          },
+          {
+            "id": "589911603500154885",
+            "name": "FilmoveVecery",
+            "color": null,
+            "position": 63
+          },
+          {
+            "id": "751876745216655467",
+            "name": "Skolni Info",
+            "color": null,
+            "position": 60
+          }
+        ],
+        "avatarUrl": "https://cdn.discordapp.com/embed/avatars/0.png"
+      },
+      "attachments": [],
+      "embeds": [],
+      "stickers": [],
+      "reactions": [],
+      "mentions": [
+        {
+          "id": "624380498290016276",
+          "name": "vojtus1",
+          "discriminator": "0000",
+          "nickname": "Vojtus1",
+          "color": "#A4B4BE",
+          "isBot": false,
+          "roles": [
+            {
+              "id": "591498402769141817",
+              "name": "ExStudent",
+              "color": "#A4B4BE",
+              "position": 95
+            },
+            {
+              "id": "591349196267716608",
+              "name": "Verify",
+              "color": null,
+              "position": 93
+            },
+            {
+              "id": "751876745216655467",
+              "name": "Skolni Info",
+              "color": null,
+              "position": 60
+            },
+            {
+              "id": "1152650784740212807",
+              "name": "divocakos",
+              "color": null,
+              "position": 49
+            }
+          ],
+          "avatarUrl": "https://cdn.discordapp.com/avatars/624380498290016276/88c2150fb72bf52ee05c4d4e4fade3a3.png?size=512"
+        }
+      ],
+      "reference": {
+        "type": "Default",
+        "messageId": "1242931119574224907",
+        "channelId": "621774199043653671",
+        "guildId": "461541385204400138"
+      },
+      "inlineEmojis": [
+        {
+          "id": "638860167068385290",
+          "name": "kappaPeek",
+          "code": "kappaPeek",
+          "isAnimated": false,
+          "imageUrl": "https://cdn.discordapp.com/emojis/638860167068385290.png"
+        }
+      ]
+    },
+    {
+      "id": "1242931935974785035",
+      "type": "Default",
+      "timestamp": "2024-05-22T20:07:46.095+00:00",
+      "timestampEdited": null,
+      "callEndedTimestamp": null,
+      "isPinned": false,
+      "content": "okej, díky za ujištění...",
+      "author": {
+        "id": "624380498290016276",
+        "name": "vojtus1",
+        "discriminator": "0000",
+        "nickname": "Vojtus1",
+        "color": "#A4B4BE",
+        "isBot": false,
+        "roles": [
+          {
+            "id": "591498402769141817",
+            "name": "ExStudent",
+            "color": "#A4B4BE",
+            "position": 95
+          },
+          {
+            "id": "591349196267716608",
+            "name": "Verify",
+            "color": null,
+            "position": 93
+          },
+          {
+            "id": "751876745216655467",
+            "name": "Skolni Info",
+            "color": null,
+            "position": 60
+          },
+          {
+            "id": "1152650784740212807",
+            "name": "divocakos",
+            "color": null,
+            "position": 49
+          }
+        ],
+        "avatarUrl": "https://cdn.discordapp.com/avatars/624380498290016276/88c2150fb72bf52ee05c4d4e4fade3a3.png?size=512"
+      },
+      "attachments": [],
+      "embeds": [],
+      "stickers": [],
+      "reactions": [],
+      "mentions": [],
+      "inlineEmojis": []
+    },
+    {
+      "id": "1244293432931909795",
+      "type": "Reply",
+      "timestamp": "2024-05-26T14:17:52.265+00:00",
+      "timestampEdited": null,
+      "callEndedTimestamp": null,
+      "isPinned": false,
+      "content": "Jeste na to koukam a chtel bych upresnit, ze maximalizuji dokonce stejny model, v tom uzsim pohledu na model jako sadu parametru s vypoctem, v tomhle pripade **w** a b ve vyrazu **w**.T **x** + b",
+      "author": {
+        "id": "642014704822255645",
+        "name": ".dedobed",
+        "discriminator": "0000",
+        "nickname": "dedObed",
+        "color": "#AD1457",
+        "isBot": false,
+        "roles": [
+          {
+            "id": "1020697715857948733",
+            "name": "Vyucujici/Zamestnanec",
+            "color": "#AD1457",
+            "position": 111
+          },
+          {
+            "id": "591349196267716608",
+            "name": "Verify",
+            "color": null,
+            "position": 93
+          },
+          {
+            "id": "589911603500154885",
+            "name": "FilmoveVecery",
+            "color": null,
+            "position": 63
+          },
+          {
+            "id": "751876745216655467",
+            "name": "Skolni Info",
+            "color": null,
+            "position": 60
+          }
+        ],
+        "avatarUrl": "https://cdn.discordapp.com/embed/avatars/0.png"
+      },
+      "attachments": [],
+      "embeds": [],
+      "stickers": [],
+      "reactions": [
+        {
+          "emoji": {
+            "id": "",
+            "name": "\uD83D\uDC4C",
+            "code": "ok_hand",
+            "isAnimated": false,
+            "imageUrl": "https://cdn.jsdelivr.net/gh/twitter/twemoji@latest/assets/svg/1f44c.svg"
+          },
+          "count": 1,
+          "users": [
+            {
+              "id": "624380498290016276",
+              "name": "vojtus1",
+              "discriminator": "0000",
+              "nickname": "Vojtus1",
+              "color": "#A4B4BE",
+              "isBot": false,
+              "avatarUrl": "https://cdn.discordapp.com/avatars/624380498290016276/88c2150fb72bf52ee05c4d4e4fade3a3.png?size=512"
+            }
+          ]
+        }
+      ],
+      "mentions": [],
+      "reference": {
+        "type": "Default",
+        "messageId": "1242930199272620173",
+        "channelId": "621774199043653671",
+        "guildId": "461541385204400138"
+      },
+      "inlineEmojis": []
+    }
+  ],
+  "messageCount": 12
+}

@@ -1,0 +1,15 @@
+channel_id	channel_name	year	messages	signals	attachments	date_after	date_before	top_topics
+826109743680061530	sur-private🔒	2021	1243	69	70	2021-04-15	2021-07-01	Bayes/pravděpodobnost (38), Klasifikace (26), HMM/Markov/Viterbi (23), Metriky a evaluace (23), Regrese (12)
+826109743680061530	sur-private🔒	2022	203	15	9	2022-04-15	2022-07-01	Metriky a evaluace (7), HMM/Markov/Viterbi (4), Klasifikace (3), Neuronové sítě (3), Bayes/pravděpodobnost (2)
+826109743680061530	sur-private🔒	2023	164	10	4	2023-04-15	2023-07-01	Metriky a evaluace (8), Klasifikace (8), Bayes/pravděpodobnost (7), HMM/Markov/Viterbi (6), Neuronové sítě (4)
+826109743680061530	sur-private🔒	2024	132	17	4	2024-04-15	2024-07-01	Regrese (6), HMM/Markov/Viterbi (5), Klasifikace (5), Neuronové sítě (4), Redukce dimenze (3)
+826109743680061530	sur-private🔒	2025	257	26	12	2025-04-15	2025-07-01	Klasifikace (9), Redukce dimenze (4), Neuronové sítě (4), Entropie/informace (4), Regrese (3)
+826109743680061530	sur-private🔒	2026	474	13	16	2026-04-15	2026-07-01	Metriky a evaluace (6), HMM/Markov/Viterbi (4), Klasifikace (4), KNN (4), Neuronové sítě (2)
+621774199043653671	sur-public	2019	0	0	0	2019-04-15	2019-07-01	-
+621774199043653671	sur-public	2020	5513	172	229	2020-04-15	2020-07-01	Bayes/pravděpodobnost (90), Klasifikace (85), Metriky a evaluace (66), HMM/Markov/Viterbi (48), Neuronové sítě (46)
+621774199043653671	sur-public	2021	143	14	9	2021-04-15	2021-07-01	Metriky a evaluace (6), Bayes/pravděpodobnost (4), Klasifikace (3), Weka/nástroje (2), Entropie/informace (1)
+621774199043653671	sur-public	2022	158	2	4	2022-04-15	2022-07-01	Weka/nástroje (3), Metriky a evaluace (3), HMM/Markov/Viterbi (1), Bayes/pravděpodobnost (1), Klasifikace (1)
+621774199043653671	sur-public	2023	407	4	14	2023-04-15	2023-07-01	Bayes/pravděpodobnost (3), Metriky a evaluace (2), HMM/Markov/Viterbi (1), KNN (1), Redukce dimenze (1)
+621774199043653671	sur-public	2024	12	1	1	2024-04-15	2024-07-01	Klasifikace (2), Weka/nástroje (1), Regrese (1), Entropie/informace (1), Redukce dimenze (1)
+621774199043653671	sur-public	2025	0	0	0	2025-04-15	2025-07-01	-
+621774199043653671	sur-public	2026	1	0	0	2026-04-15	2026-07-01	-

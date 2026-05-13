@@ -1,0 +1,112 @@
+{
+  "guild": {
+    "id": "461541385204400138",
+    "name": "VUT FIT",
+    "iconUrl": "https://cdn.discordapp.com/icons/461541385204400138/a_f3b27532e370b3269df978471709558f.gif?size=512"
+  },
+  "channel": {
+    "id": "621774199043653671",
+    "type": "GuildTextChat",
+    "categoryId": "1203724153740595270",
+    "category": "letni magistersky semestr 2",
+    "name": "sur-public",
+    "topic": "Strojové učení a rozpoznávání"
+  },
+  "dateRange": {
+    "after": "2026-04-15T00:00:00+00:00",
+    "before": "2026-07-01T00:00:00+00:00"
+  },
+  "exportedAt": "2026-05-11T08:49:54.0241435+00:00",
+  "messages": [
+    {
+      "id": "1496604729353048114",
+      "type": "Default",
+      "timestamp": "2026-04-22T20:12:53.049+00:00",
+      "timestampEdited": null,
+      "callEndedTimestamp": null,
+      "isPinned": false,
+      "content": ":gdebody:",
+      "author": {
+        "id": "314659552505102347",
+        "name": "theramsay",
+        "discriminator": "0000",
+        "nickname": "- Ramsay",
+        "color": "#8ACBFD",
+        "isBot": false,
+        "roles": [
+          {
+            "id": "1282100093285171365",
+            "name": "1MIT",
+            "color": "#8ACBFD",
+            "position": 105
+          },
+          {
+            "id": "751858151997046966",
+            "name": "Survivor",
+            "color": "#1ABC9C",
+            "position": 103
+          },
+          {
+            "id": "591349196267716608",
+            "name": "Verify",
+            "color": null,
+            "position": 93
+          },
+          {
+            "id": "1414239010234302594",
+            "name": "3bitovci",
+            "color": null,
+            "position": 3
+          }
+        ],
+        "avatarUrl": "https://cdn.discordapp.com/avatars/314659552505102347/4d48300d8a15ee904c3bce62bbf862a4.png?size=512"
+      },
+      "attachments": [],
+      "embeds": [],
+      "stickers": [],
+      "reactions": [
+        {
+          "emoji": {
+            "id": "",
+            "name": "\uD83D\uDE02",
+            "code": "joy",
+            "isAnimated": false,
+            "imageUrl": "https://cdn.jsdelivr.net/gh/twitter/twemoji@latest/assets/svg/1f602.svg"
+          },
+          "count": 2,
+          "users": [
+            {
+              "id": "330054277693177860",
+              "name": "justme8600",
+              "discriminator": "0000",
+              "nickname": "Just me",
+              "color": null,
+              "isBot": false,
+              "avatarUrl": "https://cdn.discordapp.com/avatars/330054277693177860/cb0a456df74dc1aa8170306ba68ddf4d.png?size=512"
+            },
+            {
+              "id": "341293460072169475",
+              "name": ".swabe",
+              "discriminator": "0000",
+              "nickname": "Honza Svec",
+              "color": null,
+              "isBot": false,
+              "avatarUrl": "https://cdn.discordapp.com/avatars/341293460072169475/d7cc46e7e14a5ac375e00b298fa4986f.png?size=512"
+            }
+          ]
+        }
+      ],
+      "mentions": [],
+      "inlineEmojis": [
+        {
+          "id": "801510569831170099",
+          "name": "gdebody",
+          "code": "gdebody",
+          "isAnimated": false,
+          "imageUrl": "https://cdn.discordapp.com/emojis/801510569831170099.png"
+        }
+      ]
+    }
+  ],
+  "messageCount": 1
+}

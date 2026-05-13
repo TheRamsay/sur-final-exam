@@ -1,0 +1,162 @@
+Strojové učení a rozpoznávání
+      Úvod do problematiky
+
+
+
+          Lukáš Burget
+                Co je strojové učení?
+• Tom M. Mitchell : „Říkáme, že počítačový program se učí ze
+  zkušenosti E s ohledem na nějakou třídu úloh T a nějaké měřítko
+  úspěšnosti P, pokud jeho se jeho úspěšnost měřená pomocí P,
+  zlepší se zkušeností E.“
+
+• Typické úlohy:
+  vstupní pozorování
+                               Model / Algoritmus            výstup
+      (příznaky)
+   Příklady:
+   – Prozpoznej slova v řečové nahrávce
+   – Rozpoznej identitu člověka z obrázku obličeje
+   – Přelož čeký text do Korejštiny
+   – Klasifikuj objekt na základě změřené velikosti a váhy
+   – Predikuj cenu akcií z údajů o hospodaření firmy
+
+• Typická reprezentace zkušenosti: Kolekce trenovacích vzorů
+  (vstupy a/nebo výstupy).
+
+• Typický způsob měření úspěšnosti: Konrola jak dobře řešíme
+  úlohu na nových (testovacích) vstupech a požadovaných výstupech.
+Příklady vstupních pozorování I.
+• Řečová nahrávka – různě dlouhé sekvence numerických hodnot
+                                   [ 0.1, 1.5, 5.4, 5.2, 1.1, -2.3, -5.4, …, 0.8 ]
+
+
+
+
+• Obrázek obličeje 100x100 pixelů – 3D matice
+  numerických hodnot
+  (jedna dimenze pro barevný kanál)
+
+
+
+
+• Sekvence slov – různě dlouhé sekvence diskrétních symbolů
+Příklady vstupních pozorování II.
+• Vstupní pozorování (tzv. příznaký) mohou mít
+   – Spojité nebo diskrétní hodnoty
+   – Pevnou nebo proměnsivou velikost (např. vektor, matice vs. sekvence hodnot,
+     vektoru, symbolu, …)
+• V našich příkladech budou pozorování často jen 𝐷-dimenzionální
+  vektory reálných čísel (nebo jen reálné číslo):
+                                       𝑥1
+                                       𝑥2
+                                   𝐱= ⋮
+                                       𝑥𝐷
+• Množina 𝑁 pozorování (např. trénovací vzory) potom bude
+  reprezentována maticí:
+                                     𝑥11 𝑥21 ⋯ 𝑥𝑁1
+                                     𝑥12 𝑥22 ⋯ 𝑥𝑁2
+            𝐗 = 𝐱1 , 𝐱 2 , … , 𝐱 𝑁 = ⋮    ⋮    ⋱  ⋮
+                                     𝑥1𝐷 𝑥2𝐷 ⋯ 𝑥𝑁𝐷
+Příklady vstupních pozorování III.
+• Pro jednoduchost bude často vstupní pozorování jen 2D vektor:
+   Příkladzy:
+   – Vektor dvou hodnot odpovídající velikosti a váze vstupního objektu
+   – Triviální čenobílý (grayscale) “obrázek” o dvou pixelech
+                                        𝑥1
+                                     𝐱= 𝑥
+                                         2
+• Potom můžeme zobrazit vtupní pozorování jako bod ve 2D prostoru:
+               Co je strojové učení? II.
+• Na daných trénovacích vzorech (vstupy a/nebo výstupy) se učíme
+  zobrazit neviděné vstupy na požadované výstupy.
+   Příklady:
+   – Na stovkách hodin řečových nahrávek s textovým přepsem se učíme automaticky
+      přepsat nové řečové nahrávky.
+   – Na datové sadě milionů obrazků lidských obličejů kde známe identitu člověka se učíme
+      rozpoznat identitu člověka v nových obrázcích.
+• Hlavní typy učících se algoritmů
+   – Učení s učitelem (Supervised Learning)
+       • Trénovací vzory jsou dvojice vstupů a požadovaných výstupů
+       • Typické úkoly: klasifikace či obecně rozpoznávání vzoru, regrese, …
+   – Učení bez učitele (Unsupervised Learning)
+       • Trénovací vzory jsou pouze „neanotovaná“ (vstupní) data
+         Typické úkoly: shlukování, detekce anomálií, odhad rozložení pravděpodobnosti, ...
+   – Semi-supervizované učení (Semi-supervised learning)
+       • Některé trénovací vzory jsou anotované dvojice vstup/výstum, ale pro některé
+         (většinu) máme jen neonatované vstupy.
+   – Posilované učení (Reinforcement learning)
+       • Parametry modelu jsou upravovány na základě pozitivního či negativního zpětné
+         vazby po tom co uděláme serii rozhodnutí/akcí (např. na konci vyhrané/prohrané
+         hry, po (ne)uspěšné jízdě automaticky řízeným autem).
+       • Příklady: naučit řídit autonomní vozidlo, naučit počítač hrát deskové či počítačové
+         hry
+                Učení s učitelem
+                  (Supervised Learning)
+• Trénovací vzory jsou dvojice vstupů 𝐱 a požadovaných výstupů 𝐲
+  Klasifikace:
+                                   𝑥1
+                                𝐱= 𝑥        𝑦 = {𝑟𝑒𝑑, 𝑔𝑟𝑒𝑒𝑛, 𝑏𝑙𝑢𝑒}
+                                    2
+
+                              Na trenovacích vzorech (barevné tečký) se
+                              učíme přiřadit třídu (barvu) novému před
+                              tím neviděnému vzoru (černá tečka)
+
+
+
+
+• Regrese:
+  Na trenovacích vzorech se učíme
+  predikovat pravděpodobné
+  hodnoty 𝑦 pro nové vstupy 𝑥.
+  Tedy učíme se funkci 𝑦 = f(𝑥)
+        Učení s učitelem - příklady
+• Všechy předchozí příklady odpovídaly učení s učitelem
+• Classification:
+   – Rozpoznej identitu člověka z obrázku obličeje
+   – Klasifikuj objekt na základě změřené velikosti a váhy
+   – Rozpoznej výraz v obličeji pro každý snímek videa
+• Regression:
+   – Predikuj cenu akcií z údajů o hospodaření firmy
+   – Predikuj počasí (teplotu, vlhkost, pravděpodobnost deště, ...) z historie
+     meteorologických měření
+• More general pattern recognition problems
+   – Prozpoznej slova v řečové nahrávce
+   – Detekuj a klasifikuj všechny známe (>9k) objekty ve videu https://youtu.be/MPU2HistivI
+   – Odhadni pózu každého člověka ve videu https://youtu.be/pW6nZXeWlGM
+• Other supervised learning problem
+   – Přelož čeký text do Korejštiny (Strojový překlad, Machine Translation)
+   – Automatický popiš obrázek anglickým textem
+   – Generuj realistické obrázky z textového popisu
+      Učení s učitelem - příklady
+• Automatický popis obrázku anglickým textem
+   Kombinace konvoluční a rekurentní neuronové sítě
+   Andrej Karpathy, Li Fei-Fei: Deep Visual-Semantic Alignments for
+   Generating Image Descriptions
+Supervised learning - examples
+• Generování realistických obrázků z textového popisu
+   Generativní kompetitivní neuronová sít (Generative Adversal Neural)
+   Han Zhang, et al.: StackGAN: Text to Photo-realistic Image Synthesis with
+   Stacked Generative Adversarial Networks.
+                Učení bez učitele I.
+• Shlukování (Clustering): najdi shluky „podobných“ vstupních vzorů
+
+
+
+
+   – V kolekci dokumentů najdi podobné dokumenty (stejné tema)
+   – Zjisti kolik lidí mluví v nahrávce konverzace a kdo mluví kdy (diarizace)
+
+• Detekce anomalií: detekuj neobvyklé vstupy (outliers)
+   – pro zamítnutí dalšího zpracování
+   – abychom na ně upozornili jako na zajímavá nová data
+                  Učení bez učitele I.
+• Odhad rozložení pravděpodobnosti z dat
+   – Uvidíme jak odhadnout parametry jednoduchých rozložení pravděpodobnosti
+     (Gaussovské, Diskrétní, Směs Gaussovských rozložení)
+   – S využívajícími hlubokých neuronových sítí můžeme modelovat (a generovat
+     vzory ze) složitých rozložení (např. rozložení obrázků lidských tváří)
+   Diederik P. Kingma, Prafulla Dhariwal: Glow: Generative Flow with Invertible 1x1
+   Convolutions
+

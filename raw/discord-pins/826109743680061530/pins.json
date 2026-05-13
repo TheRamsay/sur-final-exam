@@ -1,0 +1,473 @@
+{
+  "items": [
+    {
+      "pinned_at": "2026-04-08T20:30:59.025000+00:00",
+      "message": {
+        "type": 0,
+        "content": "u nas\n1) gmm+em, nevim jestli typek chtel vzorce, ale ptal se na kroky, jak to iteruje, kdy to zastavi, z ceho jsou data nebo tak neco?\n2) softmax pro 2 tridy <-> sigmoid vztah dokazat\n3) DET krivka, co je na osach, jak se to pocita, co nam rika, log scale\n4) PCS vs LDA, co kazdy z nich focusuje, jakej druh chyb kazd dela\n5) kategoricka cross entropy, ukazat na datech vypocet, vysledek a interpretaci jednotlivych cisel\n6) bayseovo pravidlo pro klasifikatory, popsat vsechny ty veci v nem, proc nam staci jen vrchni cast zlomku obcas\n7) linearni klasifikator (LDA?), odvodit tu goofy rovnici",
+        "mentions": [],
+        "mention_roles": [],
+        "attachments": [],
+        "embeds": [],
+        "timestamp": "2026-04-08T20:00:00.502000+00:00",
+        "edited_timestamp": "2026-04-08T20:01:25.095000+00:00",
+        "flags": 0,
+        "components": [],
+        "id": "1491528058937540778",
+        "channel_id": "826109743680061530",
+        "author": {
+          "id": "314659552505102347",
+          "username": "theramsay",
+          "avatar": "4d48300d8a15ee904c3bce62bbf862a4",
+          "discriminator": "0",
+          "public_flags": 256,
+          "flags": 256,
+          "banner": null,
+          "accent_color": null,
+          "global_name": "- Ramsay",
+          "avatar_decoration_data": null,
+          "collectibles": null,
+          "display_name_styles": null,
+          "banner_color": null,
+          "clan": null,
+          "primary_guild": null
+        },
+        "pinned": true,
+        "mention_everyone": false,
+        "tts": false
+      }
+    },
+    {
+      "pinned_at": "2024-05-25T05:03:30.822000+00:00",
+      "message": {
+        "type": 0,
+        "content": "1. opravný 2024\n\n1. MLE pre diskretne rozdelenie\n2. Logistická regresia pre viac tried, 2D. Máme vektor váh **W** = [[1,0], [3, 0], [1, 2]] a biasy **w0** = [2, 0, 0], trebalo vypočítať ako musí vyzerať **x** aby P(C==1 | **x**) = P(C==2 | **x**) = 0.5 a P(C==3 | **x**) = 0\n3. Nelineárne mapovanie do viacrozmerného priestoru\n4. Mali sme Wc a Wac a odvodiť smer ktorý vyberie LDA a prečo\n5. kernel funkcia\n6. GMM - povedať prečo ho používame, napísať vzorec a popísať, a vysvetliť ako by sme ho mohli použiť pre klasifikáciu\n7. Neurónová sieť ktorá klasifikuje binárne, výsledok je P(C==A), zistiť ako by malo vyzerať x aby P na výstupe bola 1 (v správe nižšie je obrázok)\n8. Z predchádzajúcej úlohy odvodiť derivácia E podľa w1_1,1\n9. Gaussovské rozloženie transformácia, určiť strednú hodnotu, kovariančnú maticu a vlastné čisla transformovanej kovariančnej matice\n10. Jacobbiho matica, povedať ako ju používame pri gradient descent, na čo slúži a aké operácie nad blokmi vykonáva\n11. odvodiť gaussovský klasifikátor pre dve triedy prečo sa z neho stane lineárny klasifikátor\n12. HMM odvodiť pomocou bayseovho vzorca P(S | X)",
+        "mentions": [],
+        "mention_roles": [],
+        "attachments": [],
+        "embeds": [],
+        "timestamp": "2024-05-24T16:44:04.318000+00:00",
+        "edited_timestamp": "2024-05-25T08:55:27.120000+00:00",
+        "flags": 0,
+        "components": [],
+        "id": "1243605449857564733",
+        "channel_id": "826109743680061530",
+        "author": {
+          "id": "502207658325966858",
+          "username": "dzuris",
+          "avatar": "9a8163b0c1a2b101570d0dd1b47e29c1",
+          "discriminator": "0",
+          "public_flags": 0,
+          "flags": 0,
+          "banner": null,
+          "accent_color": null,
+          "global_name": "dzuris",
+          "avatar_decoration_data": null,
+          "collectibles": null,
+          "display_name_styles": null,
+          "banner_color": null,
+          "clan": null,
+          "primary_guild": null
+        },
+        "pinned": true,
+        "mention_everyone": false,
+        "tts": false
+      }
+    },
+    {
+      "pinned_at": "2024-05-10T14:35:15.898000+00:00",
+      "message": {
+        "type": 0,
+        "content": "Riadny 2024:\n1. odvodiť ML odhad parametrov pre kategorické rozloženie\n2. 3dimenzionalny priestor, 4 triedy, koľko parametrov potrebujeme na multiclass log. regresiu? ako vyzerajú parametre modelu, ako odvodiť pravdepodobnosť p(C|X)\n3. HMM - rovnaký ako minulé roky - máme sekvenciu S = [1,2,3,3], ako budeme generovať dáta pre túto sekvenciu? ako generujeme dáta pre akúkoľvek sekvenciu S?\n4. Cross-Entropy - kde a na co sa pouziva, vzorec pre Multiclass Cross-Entropy?\n5. aký je výsledok softmax([-1, -1, -1, -1]) a prečo, kde sa používa softmax (príklady modelov)\n6. LDA zadané matice W_ac a W_wc, aký konkrétny vektor zvolí LDA a prečo?\n7. viď obrázok pre 2 triedy - akú hrancu zvolí perceptron, lin. logistická regresia (bez polynomialnej expanzie), SVM (bez slack variables) s lineárnou kernel funkciu, SVM (bez slack variables) s kernel funkciou (x^Ty+1)^2 ... popísať ku každému prečo, výhody/nevýhody\n8. regularizácia parametrov modelu (napríklad log. regresia) - prečo, kde vo vzorčeku sa vyskytuje\n9. SVM bola zadaná rovnica (bez slack variables) s podmienkou - popísať, prečo práve túto rovnicu minimalizujeme a prečo sú tam tie podmienky\n10. ak máme x ~ N(0,I) a nejakú transformáciu y=Wx, ako sa zmení stredná hodnota, kov. matica a jej vlastné čísla po aplikovaní transformácie\n11. ??? \n12. odvodiť vektor váh a bias lineárneho gaussovského klasifikátoru",
+        "mentions": [],
+        "mention_roles": [],
+        "attachments": [
+          {
+            "id": "1238493587331747870",
+            "filename": "image.png",
+            "size": 20206,
+            "url": "https://cdn.discordapp.com/attachments/826109743680061530/1238493587331747870/image.png?ex=6a028c49&is=6a013ac9&hm=fffa90b77c9595b5547e434a90eb166bc9c2aec30d5ca6016182478787fec0af&",
+            "proxy_url": "https://media.discordapp.net/attachments/826109743680061530/1238493587331747870/image.png?ex=6a028c49&is=6a013ac9&hm=fffa90b77c9595b5547e434a90eb166bc9c2aec30d5ca6016182478787fec0af&",
+            "width": 378,
+            "height": 309,
+            "content_type": "image/png",
+            "content_scan_version": 1,
+            "placeholder": "PQgCDoKzlspfY3Z2hqdnN5l5BoFlpAg=",
+            "placeholder_version": 1
+          }
+        ],
+        "embeds": [],
+        "timestamp": "2024-05-10T14:11:21.356000+00:00",
+        "edited_timestamp": "2024-05-10T14:44:15.194000+00:00",
+        "flags": 0,
+        "components": [],
+        "id": "1238493587491258390",
+        "channel_id": "826109743680061530",
+        "author": {
+          "id": "237616475798503435",
+          "username": ".assist",
+          "avatar": "9cbd2b5e4963334dcb1a21a91cd0f23a",
+          "discriminator": "0",
+          "public_flags": 0,
+          "flags": 0,
+          "banner": null,
+          "accent_color": null,
+          "global_name": "Assist",
+          "avatar_decoration_data": null,
+          "collectibles": null,
+          "display_name_styles": null,
+          "banner_color": null,
+          "clan": null,
+          "primary_guild": null
+        },
+        "pinned": true,
+        "mention_everyone": false,
+        "tts": false
+      }
+    },
+    {
+      "pinned_at": "2024-04-03T17:53:39.035000+00:00",
+      "message": {
+        "type": 0,
+        "content": "Polsemka 2023/24 (2 skupiny, ale boli to len poprehadzovane otazky)\n\n1.a) Matica ma vlastne cisla lambda1=lambda2=1. Ako bude vyzerat diagonalna matica s tymito vlastnymi cislami? Co vyjadruju vlastne cisla? Nakreslite rozlozenie podla takej matice, podla coho volime body?\nb) to iste pre lambda1=4 lambda2=1 a pre nediagonalnu maticu\n2. Popisat DET krivku, prahy. Viem urcit, ze jeden system je lepsi ako druhy?\n3. EM pre GMM, co sa v kazdej iteracii pocita?\n4. K comu sluzi p(x|w) pri MAP klasifikatore? Co je p(x|w) intuitivne? \n5. Popisat MLE pre kategoricke rozlozenie, ako sme sa dostali k mc/N, matematicky to znazornit.\n6. Ako pocitame wTx+w0 pomocou generativneho klasifikatora, ako tam pouzivame gaussovske rozlozenie?\n7. LDA, co znamenaju vlastne cisla, co znazornuje najlepsi smer trenovacich dat. \n\nAk mi daco chyba/mam zle, prosim opravte ma.",
+        "mentions": [],
+        "mention_roles": [],
+        "attachments": [],
+        "embeds": [],
+        "timestamp": "2024-04-03T16:43:58.045000+00:00",
+        "edited_timestamp": "2024-04-03T20:31:29.690000+00:00",
+        "flags": 0,
+        "components": [],
+        "id": "1225123642401095750",
+        "channel_id": "826109743680061530",
+        "author": {
+          "id": "756463924664205434",
+          "username": "pomocpls",
+          "avatar": "bad290e25db754308aab411c64fbe372",
+          "discriminator": "0",
+          "public_flags": 0,
+          "flags": 0,
+          "banner": null,
+          "accent_color": null,
+          "global_name": "pomocpls",
+          "avatar_decoration_data": null,
+          "collectibles": null,
+          "display_name_styles": null,
+          "banner_color": null,
+          "clan": null,
+          "primary_guild": null
+        },
+        "pinned": true,
+        "mention_everyone": false,
+        "tts": false
+      }
+    },
+    {
+      "pinned_at": "2023-06-02T15:36:49.623000+00:00",
+      "message": {
+        "type": 0,
+        "content": "Já bych kdyžtak šel ustně taky, pokud sem to dneska nedal 😄 \n\n1) MLE pro Diskretni Rozdělení \n2) Jak se dá použít Logistická Regrese jakožto linearni klasifikator\n3) Byly tam data, ukazat křivku klasifikace za pomocí a) perceptronu, b) nevim c) SVM d) SVM s kvadratickým kernelem \n4) Co je to softmax \n5) Viterbiho Algoritmus \n6) HMM \n7) Jak z vícerozměrného Gaussovského rozložení pro dvě třídy udělat lineární klasifikátor \n8) něco jako 21. v docu, akorát kovarianční matice mela 1,2 na diagonale \n9) LDA \n10) EM Algoritmus \n11) Cross Entropy",
+        "mentions": [],
+        "mention_roles": [],
+        "attachments": [],
+        "embeds": [],
+        "timestamp": "2023-05-31T15:53:36.997000+00:00",
+        "edited_timestamp": null,
+        "flags": 0,
+        "components": [],
+        "id": "1113495508602867742",
+        "channel_id": "826109743680061530",
+        "author": {
+          "id": "398612605649813515",
+          "username": "ricardo_pipas",
+          "avatar": "c1ac97bdedd3a30a7b4fc911f2f2fc5e",
+          "discriminator": "0",
+          "public_flags": 0,
+          "flags": 0,
+          "banner": null,
+          "accent_color": null,
+          "global_name": "Ing. Ricardo",
+          "avatar_decoration_data": null,
+          "collectibles": null,
+          "display_name_styles": null,
+          "banner_color": null,
+          "clan": null,
+          "primary_guild": null
+        },
+        "pinned": true,
+        "mention_everyone": false,
+        "tts": false
+      }
+    },
+    {
+      "pinned_at": "2023-05-10T12:45:50.272000+00:00",
+      "message": {
+        "type": 0,
+        "content": "LDA najít dimenzi, Perceptron učení, SVM rovnice vysvětlit význam a proč to minimalizujeme, output basic zadané neuronové sítě tak, aby vyšla třída B a ne A, generativní systémy a jejich výhody, GMM skrytý něco (to mi nic neříkalo), Markovské modely jednou prakticky (pravděpodobnost sekvence, kde jednou víme stavy a jednou ne), podruhé Markovské procesy a Viterbiho trénováním, dál jak bysme udělali klasifikátor pro data na obrázku (co, jak, jaký parametry, jak by se klasifikovalo), co je regularizace, odvodit jak ze dvou vícerozměrných gaussovek se stejnou kovarianční maticí uděláme lineární klasifikátor, jak vypadá klasifikátor pro více než dvě třídy (třeba logistickou regresí), output softmaxu při daným vstupu a k čemu je, MFCC co jsou, jak je získám.",
+        "mentions": [],
+        "mention_roles": [],
+        "attachments": [],
+        "embeds": [],
+        "timestamp": "2022-05-17T15:19:06.551000+00:00",
+        "edited_timestamp": "2022-05-17T15:36:13.448000+00:00",
+        "flags": 0,
+        "components": [],
+        "id": "976141823460405268",
+        "channel_id": "826109743680061530",
+        "author": {
+          "id": "371631416510906368",
+          "username": "isaacdrews",
+          "avatar": "6de3f88ff1e3313022aab37d57465af9",
+          "discriminator": "0",
+          "public_flags": 0,
+          "flags": 0,
+          "banner": null,
+          "accent_color": null,
+          "global_name": "Izák Kompost",
+          "avatar_decoration_data": null,
+          "collectibles": null,
+          "display_name_styles": null,
+          "banner_color": null,
+          "clan": null,
+          "primary_guild": null
+        },
+        "pinned": true,
+        "mention_everyone": false,
+        "tts": false
+      }
+    },
+    {
+      "pinned_at": "2023-03-23T16:59:05.202000+00:00",
+      "message": {
+        "type": 0,
+        "content": "pulsemka 23\n1) Odvozeni ML pro kategoricke rozložení\n2) popis kroky viterbi a popis rovnic\n3) PCA a vl. č\n4) LDA a vl. č\n5) popis jak se dostat od zaznamu hlasu k MFCC a proc\n6) popis DET krivku nejak v kontextu nalezitosti hlasu k mluvicmu (ne kategorie, ale nalezitost 90% muz 10% zena)\n7)  λ1 = 1, λ2 = 0, co to znamena, napis nediagonalni kovar. matici a nakresli\n8) Zavislost s diagonalni kovariacni matici urcit pravdepodobnosti p(x1) p(x2), p(x1/x2), p(x2/x1) \n\ncredits <@414845106588352532> <@462736951519477760>",
+        "mentions": [
+          {
+            "id": "462736951519477760",
+            "username": "ghost2728",
+            "avatar": null,
+            "discriminator": "0",
+            "public_flags": 0,
+            "flags": 0,
+            "banner": null,
+            "accent_color": null,
+            "global_name": "ghost",
+            "avatar_decoration_data": null,
+            "collectibles": null,
+            "display_name_styles": null,
+            "banner_color": null,
+            "clan": null,
+            "primary_guild": null
+          },
+          {
+            "id": "414845106588352532",
+            "username": "toxicenzo",
+            "avatar": "7014dd2529a2abc2f294f47937d28ff1",
+            "discriminator": "0",
+            "public_flags": 0,
+            "flags": 0,
+            "banner": null,
+            "accent_color": null,
+            "global_name": "Toxičenzo",
+            "avatar_decoration_data": null,
+            "collectibles": null,
+            "display_name_styles": null,
+            "banner_color": null,
+            "clan": null,
+            "primary_guild": null
+          }
+        ],
+        "mention_roles": [],
+        "attachments": [],
+        "embeds": [],
+        "timestamp": "2023-03-22T17:32:00.418000+00:00",
+        "edited_timestamp": "2023-03-23T17:43:24.092000+00:00",
+        "flags": 0,
+        "components": [],
+        "id": "1088153118753161277",
+        "channel_id": "826109743680061530",
+        "author": {
+          "id": "624160228111417344",
+          "username": "justlada",
+          "avatar": "c1897bd9be3bed5c697e23b8cb8eb9a6",
+          "discriminator": "0",
+          "public_flags": 0,
+          "flags": 0,
+          "banner": null,
+          "accent_color": null,
+          "global_name": "Lada",
+          "avatar_decoration_data": {
+            "asset": "a_8552f9857793aed0cf816f370e2df3be",
+            "sku_id": "1232071712695386162",
+            "expires_at": null
+          },
+          "collectibles": null,
+          "display_name_styles": null,
+          "banner_color": null,
+          "clan": null,
+          "primary_guild": null
+        },
+        "pinned": true,
+        "mention_everyone": false,
+        "tts": false
+      }
+    },
+    {
+      "pinned_at": "2023-03-22T09:39:39.214000+00:00",
+      "message": {
+        "type": 0,
+        "content": "hej něco podobného jak toto https://docs.google.com/document/d/1wAjaXn1jHBvw5QkAMWW8Tk9Oer55IkKW/edit",
+        "mentions": [],
+        "mention_roles": [],
+        "attachments": [],
+        "embeds": [
+          {
+            "type": "link",
+            "url": "https://docs.google.com/document/d/1wAjaXn1jHBvw5QkAMWW8Tk9Oer55IkKW/edit",
+            "title": "SUR.docx",
+            "description": "Semestrální zkouška IKR - 17. 5. 2016,    Příprava na zkoušku 2020 Pokud vám nejde edit, zkuste o něj požádat, a nebo mi radši napsat na discord @Laďa Udržujte úroveň dokumentu => nespamujte dotazy otázkami k nim, využijte komentáře či discordu (pokud neumíte formátovat), a následně zapracujte ře...",
+            "provider": {
+              "name": "Google Docs"
+            },
+            "thumbnail": {
+              "url": "https://lh4.googleusercontent.com/DpMPlRQ_nXJmu7YH5AhDqYyy7QFFJTCQcjLWy9WQaUyQmyZrSqdGF7pBP7FOLAOyQzk=w1200-h630-p",
+              "proxy_url": "https://images-ext-1.discordapp.net/external/Cp70ZQYh4LDAA0kvC3z4loibir3mvaCqhvsvyZMu7zQ/https/lh4.googleusercontent.com/DpMPlRQ_nXJmu7YH5AhDqYyy7QFFJTCQcjLWy9WQaUyQmyZrSqdGF7pBP7FOLAOyQzk%3Dw1200-h630-p",
+              "width": 1200,
+              "height": 630,
+              "flags": 0
+            },
+            "content_scan_version": 3
+          }
+        ],
+        "timestamp": "2023-03-20T17:25:59.309000+00:00",
+        "edited_timestamp": null,
+        "flags": 1024,
+        "components": [],
+        "id": "1087426828421054615",
+        "channel_id": "826109743680061530",
+        "author": {
+          "id": "414845106588352532",
+          "username": "toxicenzo",
+          "avatar": "7014dd2529a2abc2f294f47937d28ff1",
+          "discriminator": "0",
+          "public_flags": 0,
+          "flags": 0,
+          "banner": null,
+          "accent_color": null,
+          "global_name": "Toxičenzo",
+          "avatar_decoration_data": null,
+          "collectibles": null,
+          "display_name_styles": null,
+          "banner_color": null,
+          "clan": null,
+          "primary_guild": null
+        },
+        "pinned": true,
+        "mention_everyone": false,
+        "tts": false
+      }
+    },
+    {
+      "pinned_at": "2021-06-01T09:29:08.644000+00:00",
+      "message": {
+        "type": 0,
+        "content": "sdílenej dokument\n- i s doplněnýma odpověďma k letošnímu řádnému\n\nhttps://docs.google.com/document/d/1lphxLFTAz6GopOTjp7-FjI62GaZuTkR3L1oeQEc5W3c/edit#",
+        "mentions": [],
+        "mention_roles": [],
+        "attachments": [],
+        "embeds": [
+          {
+            "type": "link",
+            "url": "https://docs.google.com/document/d/1lphxLFTAz6GopOTjp7-FjI62GaZuTkR3L1oeQEc5W3c/edit",
+            "title": "IKR Survival Guide",
+            "description": "IKR SURvival Guide i know, really Pokud neplánujete přidávat nové informace, zapněte si vpravo nahoře Zobrazení místo Úpravy. Pokud odpověď chybí a myslíte si, že ji znáte, doplňte ji. Ideálně doplňte i zdroj jako důkaz správnosti, například číslo slidu z prezentace. Pokud si myslíte, že napsaná ...",
+            "provider": {
+              "name": "Google Docs"
+            },
+            "thumbnail": {
+              "url": "https://lh4.googleusercontent.com/bvDVQksNVpLhObpTiUuL4LwLuTVxACFD2OVPlFR2y-9RN3usRKgb_36foIJTxaRfvcudwcZdKtJ3Sw=w1200-h630-p",
+              "proxy_url": "https://images-ext-1.discordapp.net/external/O7RN3eT9xAo1nuXLjJk3YXQnQAYPTJzrz_rriVTA3K4/https/lh4.googleusercontent.com/bvDVQksNVpLhObpTiUuL4LwLuTVxACFD2OVPlFR2y-9RN3usRKgb_36foIJTxaRfvcudwcZdKtJ3Sw%3Dw1200-h630-p",
+              "width": 1200,
+              "height": 630,
+              "flags": 0
+            }
+          }
+        ],
+        "timestamp": "2021-06-01T09:17:23.961000+00:00",
+        "edited_timestamp": null,
+        "flags": 0,
+        "components": [],
+        "id": "849215043240329227",
+        "channel_id": "826109743680061530",
+        "author": {
+          "id": "398609553748525067",
+          "username": "francze",
+          "avatar": "8b08630955df560e2821caf3b2ed9a3f",
+          "discriminator": "0",
+          "public_flags": 0,
+          "flags": 0,
+          "banner": null,
+          "accent_color": null,
+          "global_name": "Ferenc hop na kredenc",
+          "avatar_decoration_data": null,
+          "collectibles": null,
+          "display_name_styles": null,
+          "banner_color": null,
+          "clan": {
+            "identity_guild_id": "461541385204400138",
+            "identity_enabled": true,
+            "tag": "VUT",
+            "badge": "878c62b6694a4f5931104f766191bec7"
+          },
+          "primary_guild": {
+            "identity_guild_id": "461541385204400138",
+            "identity_enabled": true,
+            "tag": "VUT",
+            "badge": "878c62b6694a4f5931104f766191bec7"
+          }
+        },
+        "pinned": true,
+        "mention_everyone": false,
+        "tts": false
+      }
+    },
+    {
+      "pinned_at": "2021-04-12T10:46:25.414000+00:00",
+      "message": {
+        "type": 0,
+        "content": "Ak niekomu pomoze aspon kde tie vzorce priblizne hladat:\n\n- DiagonalGaussian: bayesovska_teorie s.22,23\n- MultivariateGaussian:  bayesovska_teorie s.22, samples: https://en.wikipedia.org/wiki/Multivariate_normal_distribution#Drawing_values_from_the_distribution\n- Posteriors: bayesovska_teorie s.32,33\n- GMM_pdf: bayesovska_teorie s.36-37\n- Viterbi trenovanie: bayesovska_teorie s.38-41\n- EM-trenovanie: bayesovska_teorie s.42\n- GenerativeClassifier: len 1 argmax funkcia\n- estimate_glc: shared covariance - extrakce_priznaku s.28\n- MulticlassLogisticRegression: \n   - logits - lin_klasifikatory s.27\n   - posteriors - lin_klasifikatory s.27\n   - gd_step - lin_klasifikatory s.32-34\n- softmax_regr_from_tied_gaussians: lin_klasifikatory s.43",
+        "mentions": [],
+        "mention_roles": [],
+        "attachments": [],
+        "embeds": [],
+        "timestamp": "2021-04-12T09:54:47.834000+00:00",
+        "edited_timestamp": null,
+        "flags": 4,
+        "components": [],
+        "id": "831105061446615080",
+        "channel_id": "826109743680061530",
+        "author": {
+          "id": "508675258568671252",
+          "username": "nervacka",
+          "avatar": "1a4c1dfd9e455d13b08356280acf38a2",
+          "discriminator": "0",
+          "public_flags": 0,
+          "flags": 0,
+          "banner": null,
+          "accent_color": null,
+          "global_name": "Nervacka",
+          "avatar_decoration_data": null,
+          "collectibles": null,
+          "display_name_styles": null,
+          "banner_color": null,
+          "clan": null,
+          "primary_guild": null
+        },
+        "pinned": true,
+        "mention_everyone": false,
+        "tts": false
+      }
+    }
+  ],
+  "has_more": false
+}

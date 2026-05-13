@@ -6,10 +6,6 @@
 # Obsidian local UI state
 .obsidian/
 
-# Large raw Discord exports, keep local for now
-raw/discord/
-raw/discord-pins/
-raw/discord-analysis/
 raw/*.zip
 
 # Local Quartz build/test artifacts
